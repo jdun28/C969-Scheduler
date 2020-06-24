@@ -1,6 +1,6 @@
 ﻿namespace C969
 {
-    partial class Form1
+    partial class CalendarForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.SuspendLayout();
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(372, 226);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            // 
+            // CalendarForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1067, 793);
+            this.Controls.Add(this.monthCalendar1);
+            this.Name = "CalendarForm";
+            this.Text = "CalendarForm";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }
-
