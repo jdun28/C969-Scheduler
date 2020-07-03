@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C969
+namespace ScheduleProgram
 {
-    class Customer
+    class CustomerInfo
     {
     }
 }

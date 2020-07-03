@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace C969
+namespace ScheduleProgram
 {
     public partial class SignInForm : Form
     {

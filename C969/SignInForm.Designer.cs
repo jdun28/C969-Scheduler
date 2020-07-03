@@ -1,4 +1,4 @@
-﻿namespace C969
+﻿namespace ScheduleProgram
 {
     partial class SignInForm
     {
