@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScheduleProgram
+namespace ScheduleProgram.Database
 {
-    class Appointment
-    {
+    class Customer
+    { 
     }
 }

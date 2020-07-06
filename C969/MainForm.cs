@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ScheduleProgram
 {
-    public partial class Customers : Form
+    public partial class MainForm : Form
     {
-        public Customers()
+        public MainForm()
         {
             InitializeComponent();
         }

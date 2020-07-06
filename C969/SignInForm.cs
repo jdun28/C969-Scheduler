@@ -19,7 +19,15 @@ namespace ScheduleProgram
 
         private void signInButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            MainForm dash = new MainForm();
+            dash.Show();
+            
+        }
 
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
