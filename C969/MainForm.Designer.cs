@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.custDgv = new System.Windows.Forms.DataGridView();
+            this.apptDgv = new System.Windows.Forms.DataGridView();
             this.updateCustBtn = new System.Windows.Forms.Button();
             this.addCustBtn = new System.Windows.Forms.Button();
             this.deleteCustBtn = new System.Windows.Forms.Button();
@@ -37,29 +37,31 @@
             this.addApptBtn = new System.Windows.Forms.Button();
             this.deleteApptBtn = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)(this.custDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.apptDgv)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // custDgv
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(865, 112);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 82;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1200, 340);
-            this.dataGridView1.TabIndex = 0;
+            this.custDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.custDgv.Location = new System.Drawing.Point(865, 112);
+            this.custDgv.Name = "custDgv";
+            this.custDgv.RowHeadersWidth = 82;
+            this.custDgv.RowTemplate.Height = 33;
+            this.custDgv.Size = new System.Drawing.Size(1200, 340);
+            this.custDgv.TabIndex = 0;
             // 
-            // dataGridView2
+            // apptDgv
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(865, 614);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 82;
-            this.dataGridView2.RowTemplate.Height = 33;
-            this.dataGridView2.Size = new System.Drawing.Size(1200, 340);
-            this.dataGridView2.TabIndex = 1;
+            this.apptDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.apptDgv.Location = new System.Drawing.Point(865, 614);
+            this.apptDgv.Name = "apptDgv";
+            this.apptDgv.RowHeadersWidth = 82;
+            this.apptDgv.RowTemplate.Height = 33;
+            this.apptDgv.Size = new System.Drawing.Size(1200, 340);
+            this.apptDgv.TabIndex = 1;
             // 
             // updateCustBtn
             // 
@@ -80,6 +82,7 @@
             this.addCustBtn.TabIndex = 3;
             this.addCustBtn.Text = "Add";
             this.addCustBtn.UseVisualStyleBackColor = true;
+            this.addCustBtn.Click += new System.EventHandler(this.addCustBtn_Click);
             // 
             // deleteCustBtn
             // 
@@ -127,11 +130,37 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 8;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(65, 458);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(114, 35);
+            this.radioButton1.TabIndex = 9;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Week";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(201, 458);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(120, 35);
+            this.radioButton2.TabIndex = 10;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Month";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2111, 1123);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.deleteApptBtn);
             this.Controls.Add(this.addApptBtn);
@@ -139,20 +168,21 @@
             this.Controls.Add(this.deleteCustBtn);
             this.Controls.Add(this.addCustBtn);
             this.Controls.Add(this.updateCustBtn);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.apptDgv);
+            this.Controls.Add(this.custDgv);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.custDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.apptDgv)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView custDgv;
+        private System.Windows.Forms.DataGridView apptDgv;
         private System.Windows.Forms.Button updateCustBtn;
         private System.Windows.Forms.Button addCustBtn;
         private System.Windows.Forms.Button deleteCustBtn;
@@ -160,5 +190,7 @@
         private System.Windows.Forms.Button addApptBtn;
         private System.Windows.Forms.Button deleteApptBtn;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

@@ -16,5 +16,10 @@ namespace ScheduleProgram
         {
             InitializeComponent();
         }
+
+        private void phoneTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
