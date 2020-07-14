@@ -21,5 +21,12 @@ namespace ScheduleProgram
         {
 
         }
+
+        private void cancelCustBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm dash = new MainForm();
+            dash.Show();
+        }
     }
 }

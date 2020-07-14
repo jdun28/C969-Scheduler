@@ -36,9 +36,10 @@
             this.udpateApptBtn = new System.Windows.Forms.Button();
             this.addApptBtn = new System.Windows.Forms.Button();
             this.deleteApptBtn = new System.Windows.Forms.Button();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.myCal = new System.Windows.Forms.MonthCalendar();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.exitBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.custDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.apptDgv)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +49,7 @@
             this.custDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.custDgv.Location = new System.Drawing.Point(865, 112);
             this.custDgv.Name = "custDgv";
+            this.custDgv.RowHeadersVisible = false;
             this.custDgv.RowHeadersWidth = 82;
             this.custDgv.RowTemplate.Height = 33;
             this.custDgv.Size = new System.Drawing.Size(1200, 340);
@@ -58,6 +60,7 @@
             this.apptDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.apptDgv.Location = new System.Drawing.Point(865, 614);
             this.apptDgv.Name = "apptDgv";
+            this.apptDgv.RowHeadersVisible = false;
             this.apptDgv.RowHeadersWidth = 82;
             this.apptDgv.RowTemplate.Height = 33;
             this.apptDgv.Size = new System.Drawing.Size(1200, 340);
@@ -124,11 +127,11 @@
             this.deleteApptBtn.Text = "Delete";
             this.deleteApptBtn.UseVisualStyleBackColor = true;
             // 
-            // monthCalendar1
+            // myCal
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(65, 112);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 8;
+            this.myCal.Location = new System.Drawing.Point(65, 112);
+            this.myCal.Name = "myCal";
+            this.myCal.TabIndex = 8;
             // 
             // radioButton1
             // 
@@ -154,14 +157,28 @@
             this.radioButton2.Text = "Month";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
+            // exitBtn
+            // 
+            this.exitBtn.AllowDrop = true;
+            this.exitBtn.BackColor = System.Drawing.Color.Red;
+            this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitBtn.Location = new System.Drawing.Point(65, 1023);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(177, 56);
+            this.exitBtn.TabIndex = 11;
+            this.exitBtn.Text = "Exit";
+            this.exitBtn.UseVisualStyleBackColor = false;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2111, 1123);
+            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.myCal);
             this.Controls.Add(this.deleteApptBtn);
             this.Controls.Add(this.addApptBtn);
             this.Controls.Add(this.udpateApptBtn);
@@ -189,8 +206,9 @@
         private System.Windows.Forms.Button udpateApptBtn;
         private System.Windows.Forms.Button addApptBtn;
         private System.Windows.Forms.Button deleteApptBtn;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar myCal;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Button exitBtn;
     }
 }

@@ -16,5 +16,12 @@ namespace ScheduleProgram
         {
             InitializeComponent();
         }
+
+        private void cancelApptBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm dash = new MainForm();
+            dash.Show();
+        }
     }
 }

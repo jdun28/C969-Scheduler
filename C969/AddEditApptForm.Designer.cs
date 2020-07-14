@@ -123,6 +123,7 @@
             this.cancelApptBtn.TabIndex = 21;
             this.cancelApptBtn.Text = "Cancel";
             this.cancelApptBtn.UseVisualStyleBackColor = true;
+            this.cancelApptBtn.Click += new System.EventHandler(this.cancelApptBtn_Click);
             // 
             // saveApptBtn
             // 

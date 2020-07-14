@@ -8,15 +8,12 @@ namespace ScheduleProgram.Database
 {
     class SqlDatabase
     {
-        public readonly string Server = "3.227.166.251";
-        public readonly string Database = "U06Etk";
-        public readonly string Uname = "U06Etk";
-        public readonly string DbPass = "53688740958";
+        public static string Server = "3.227.166.251";
+        public static string Database = "U06EtK";
+        public static string Uid = "U06EtK";
+        public static string Password = "53688740958";
 
-        public string ConnectionString
-        {
-            get { return $"SERVER={Server}; DATABASE={Database}; Username ={Uname}; Password={DbPass};" + "SslMode = None; Convert Zero Datetime = True;"; }
-        }
+        public static string ConnectionString => $"SERVER={Server}; DATABASE={Database}; Uid ={Uid}; Pwd={Password};";
 
     }
 }
