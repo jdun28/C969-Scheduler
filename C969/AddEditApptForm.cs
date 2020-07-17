@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScheduleProgram.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace ScheduleProgram
         public AddEditApptForm()
         {
             InitializeComponent();
+            DataTable apptDt = new DataTable();
+            Appointment.populateApptData(Customer.custQuery, apptDt);
+            custNameCB.DataSource = apptDt;
+            custNameCB.DisplayMember = "CustomerName";
+
         }
 
         private void cancelApptBtn_Click(object sender, EventArgs e)
@@ -22,6 +28,11 @@ namespace ScheduleProgram
             this.Hide();
             MainForm dash = new MainForm();
             dash.Show();
+        }
+
+        private void custNameCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
