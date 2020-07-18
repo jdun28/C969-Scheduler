@@ -51,9 +51,33 @@ namespace ScheduleProgram
             newAppt.Show();
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void dayRb_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void weekRb_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void monthRb_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void updateCustBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddEditCustForm editCust = new AddEditCustForm();
+            editCust.Show();
+        }
+
+        private void udpateApptBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddEditApptForm editAppt = new AddEditApptForm();
+            editAppt.Show();
         }
     }
 }

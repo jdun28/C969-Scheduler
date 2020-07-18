@@ -10,7 +10,7 @@ using System.Data;
 
 namespace ScheduleProgram.Database
 {
-    class Customer
+    public class Customer
     {
         //query to create selection for custDgv
         public static string custQuery =
@@ -21,7 +21,7 @@ namespace ScheduleProgram.Database
             + "INNER JOIN country on city.countryId = country.countryId;";
         public static void populateCustData(string c, DataTable dt)
         {
-            using (MySqlConnection connect = new MySqlConnection(Database.SqlDatabase.ConnectionString))
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
                 MySqlCommand cmd = new MySqlCommand(c, connect);
                 connect.Open();

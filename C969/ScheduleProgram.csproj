@@ -65,6 +65,11 @@
       <DependentUpon>AddEditCustForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Database\SqlDatabase.cs" />
+    <Compile Include="Localization\Spanish.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Spanish.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +90,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditCustForm.resx">
       <DependentUpon>AddEditCustForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Spanish.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Spanish.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace ScheduleProgram.Database
 {
-    class Appointment
+    public class Appointment
     {
         
 
@@ -20,13 +20,27 @@ namespace ScheduleProgram.Database
 
         public static void populateApptData(string a, DataTable dt)
         {
-            using (MySqlConnection connect = new MySqlConnection(Database.SqlDatabase.ConnectionString))
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
                 MySqlCommand cmd = new MySqlCommand(a, connect);
                 connect.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 connect.Close();
+            }
+        }
+
+
+        public static void ScheduledAppointments()
+        {
+            DateTime Curr = Convert.ToDateTime(DateTime.UtcNow);
+            DateTime Next15 = Convert.ToDateTime(DateTime.UtcNow).AddMinutes(15);
+
+            DataTable upcoming = new DataTable();
+
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                MySqlCommand cmd = new
             }
         }
     }

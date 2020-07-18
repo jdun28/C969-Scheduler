@@ -37,10 +37,10 @@
             this.addApptBtn = new System.Windows.Forms.Button();
             this.deleteApptBtn = new System.Windows.Forms.Button();
             this.myCal = new System.Windows.Forms.MonthCalendar();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.weekRb = new System.Windows.Forms.RadioButton();
+            this.monthRb = new System.Windows.Forms.RadioButton();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.dayRb = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.custDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.apptDgv)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +49,7 @@
             // 
             this.custDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.custDgv.Location = new System.Drawing.Point(432, 58);
-            this.custDgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.custDgv.Margin = new System.Windows.Forms.Padding(2);
             this.custDgv.Name = "custDgv";
             this.custDgv.RowHeadersVisible = false;
             this.custDgv.RowHeadersWidth = 82;
@@ -61,7 +61,7 @@
             // 
             this.apptDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.apptDgv.Location = new System.Drawing.Point(432, 319);
-            this.apptDgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.apptDgv.Margin = new System.Windows.Forms.Padding(2);
             this.apptDgv.Name = "apptDgv";
             this.apptDgv.RowHeadersVisible = false;
             this.apptDgv.RowHeadersWidth = 82;
@@ -73,18 +73,19 @@
             // 
             this.updateCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.updateCustBtn.Location = new System.Drawing.Point(944, 238);
-            this.updateCustBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.updateCustBtn.Margin = new System.Windows.Forms.Padding(2);
             this.updateCustBtn.Name = "updateCustBtn";
             this.updateCustBtn.Size = new System.Drawing.Size(88, 29);
             this.updateCustBtn.TabIndex = 2;
             this.updateCustBtn.Text = "Update";
             this.updateCustBtn.UseVisualStyleBackColor = true;
+            this.updateCustBtn.Click += new System.EventHandler(this.updateCustBtn_Click);
             // 
             // addCustBtn
             // 
             this.addCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCustBtn.Location = new System.Drawing.Point(850, 238);
-            this.addCustBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addCustBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addCustBtn.Name = "addCustBtn";
             this.addCustBtn.Size = new System.Drawing.Size(88, 29);
             this.addCustBtn.TabIndex = 3;
@@ -96,7 +97,7 @@
             // 
             this.deleteCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteCustBtn.Location = new System.Drawing.Point(757, 238);
-            this.deleteCustBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deleteCustBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteCustBtn.Name = "deleteCustBtn";
             this.deleteCustBtn.Size = new System.Drawing.Size(88, 29);
             this.deleteCustBtn.TabIndex = 4;
@@ -107,18 +108,19 @@
             // 
             this.udpateApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.udpateApptBtn.Location = new System.Drawing.Point(944, 499);
-            this.udpateApptBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.udpateApptBtn.Margin = new System.Windows.Forms.Padding(2);
             this.udpateApptBtn.Name = "udpateApptBtn";
             this.udpateApptBtn.Size = new System.Drawing.Size(88, 29);
             this.udpateApptBtn.TabIndex = 5;
             this.udpateApptBtn.Text = "Update";
             this.udpateApptBtn.UseVisualStyleBackColor = true;
+            this.udpateApptBtn.Click += new System.EventHandler(this.udpateApptBtn_Click);
             // 
             // addApptBtn
             // 
             this.addApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addApptBtn.Location = new System.Drawing.Point(850, 499);
-            this.addApptBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addApptBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addApptBtn.Name = "addApptBtn";
             this.addApptBtn.Size = new System.Drawing.Size(88, 29);
             this.addApptBtn.TabIndex = 6;
@@ -130,7 +132,7 @@
             // 
             this.deleteApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteApptBtn.Location = new System.Drawing.Point(757, 499);
-            this.deleteApptBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deleteApptBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteApptBtn.Name = "deleteApptBtn";
             this.deleteApptBtn.Size = new System.Drawing.Size(88, 29);
             this.deleteApptBtn.TabIndex = 7;
@@ -144,31 +146,33 @@
             this.myCal.Name = "myCal";
             this.myCal.TabIndex = 8;
             // 
-            // radioButton1
+            // weekRb
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(88, 238);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(62, 21);
-            this.radioButton1.TabIndex = 9;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Week";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.weekRb.AutoSize = true;
+            this.weekRb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.weekRb.Location = new System.Drawing.Point(88, 238);
+            this.weekRb.Margin = new System.Windows.Forms.Padding(2);
+            this.weekRb.Name = "weekRb";
+            this.weekRb.Size = new System.Drawing.Size(62, 21);
+            this.weekRb.TabIndex = 9;
+            this.weekRb.TabStop = true;
+            this.weekRb.Text = "Week";
+            this.weekRb.UseVisualStyleBackColor = true;
+            this.weekRb.CheckedChanged += new System.EventHandler(this.weekRb_CheckedChanged);
             // 
-            // radioButton2
+            // monthRb
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(154, 238);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(65, 21);
-            this.radioButton2.TabIndex = 10;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Month";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.monthRb.AutoSize = true;
+            this.monthRb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monthRb.Location = new System.Drawing.Point(154, 238);
+            this.monthRb.Margin = new System.Windows.Forms.Padding(2);
+            this.monthRb.Name = "monthRb";
+            this.monthRb.Size = new System.Drawing.Size(65, 21);
+            this.monthRb.TabIndex = 10;
+            this.monthRb.TabStop = true;
+            this.monthRb.Text = "Month";
+            this.monthRb.UseVisualStyleBackColor = true;
+            this.monthRb.CheckedChanged += new System.EventHandler(this.monthRb_CheckedChanged);
             // 
             // exitBtn
             // 
@@ -176,7 +180,7 @@
             this.exitBtn.BackColor = System.Drawing.Color.Red;
             this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitBtn.Location = new System.Drawing.Point(32, 532);
-            this.exitBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(2);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(88, 29);
             this.exitBtn.TabIndex = 11;
@@ -184,28 +188,28 @@
             this.exitBtn.UseVisualStyleBackColor = false;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
-            // radioButton3
+            // dayRb
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F);
-            this.radioButton3.Location = new System.Drawing.Point(32, 238);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(51, 21);
-            this.radioButton3.TabIndex = 12;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Day";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.dayRb.AutoSize = true;
+            this.dayRb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F);
+            this.dayRb.Location = new System.Drawing.Point(32, 238);
+            this.dayRb.Name = "dayRb";
+            this.dayRb.Size = new System.Drawing.Size(51, 21);
+            this.dayRb.TabIndex = 12;
+            this.dayRb.TabStop = true;
+            this.dayRb.Text = "Day";
+            this.dayRb.UseVisualStyleBackColor = true;
+            this.dayRb.CheckedChanged += new System.EventHandler(this.dayRb_CheckedChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1056, 608);
-            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.dayRb);
             this.Controls.Add(this.exitBtn);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.monthRb);
+            this.Controls.Add(this.weekRb);
             this.Controls.Add(this.myCal);
             this.Controls.Add(this.deleteApptBtn);
             this.Controls.Add(this.addApptBtn);
@@ -215,7 +219,7 @@
             this.Controls.Add(this.updateCustBtn);
             this.Controls.Add(this.apptDgv);
             this.Controls.Add(this.custDgv);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.custDgv)).EndInit();
@@ -236,9 +240,9 @@
         private System.Windows.Forms.Button addApptBtn;
         private System.Windows.Forms.Button deleteApptBtn;
         private System.Windows.Forms.MonthCalendar myCal;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton weekRb;
+        private System.Windows.Forms.RadioButton monthRb;
         private System.Windows.Forms.Button exitBtn;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton dayRb;
     }
 }

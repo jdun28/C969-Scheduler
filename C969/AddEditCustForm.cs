@@ -15,19 +15,36 @@ namespace ScheduleProgram
     public partial class AddEditCustForm : Form
     {
         //string to get only city and country
-        public string cityCountry = "SELECT city.city, country.country "
-       + " from city "
-       + "INNER JOIN country on city.countryId = country.countryId;";
+        public string city = "SELECT city from city;";
+        public string country = "SELECT country from country;";
 
         public AddEditCustForm()
         {
-            DataTable custDt = new DataTable();
+            DataTable cityDt = new DataTable();
+            DataTable countryDt = new DataTable();
             InitializeComponent();
-            Customer.populateCustData(cityCountry, custDt);
-            cityCB.DataSource = custDt;
+            getConstData(city, cityDt);
+            cityCB.DataSource = cityDt;
             cityCB.DisplayMember = "City";
-            countryCB.DataSource = custDt;
+            Customer.populateCustData(country, countryDt);
+            countryCB.DataSource = countryDt;
             countryCB.DisplayMember = "Country";
+        }
+
+        public void getConstData(string d, DataTable dt)
+        {
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                MySqlCommand cmd = new MySqlCommand(d, connect);
+                connect.Open();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                connect.Close();
+
+
+
+
+            }
         }
 
         private void phoneTxt_TextChanged(object sender, EventArgs e)

@@ -31,8 +31,8 @@
             this.usernameTxt = new System.Windows.Forms.RichTextBox();
             this.passwordTxt = new System.Windows.Forms.RichTextBox();
             this.signInBtn = new System.Windows.Forms.Button();
-            this.usernameLabel = new System.Windows.Forms.Label();
-            this.passwordLabel = new System.Windows.Forms.Label();
+            this.usernameLbl = new System.Windows.Forms.Label();
+            this.passwordLbl = new System.Windows.Forms.Label();
             this.exitBtn = new System.Windows.Forms.Button();
             this.welcomeLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -65,25 +65,25 @@
             this.signInBtn.UseVisualStyleBackColor = false;
             this.signInBtn.Click += new System.EventHandler(this.signInButton_Click);
             // 
-            // usernameLabel
+            // usernameLbl
             // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLabel.Location = new System.Drawing.Point(379, 196);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(164, 37);
-            this.usernameLabel.TabIndex = 3;
-            this.usernameLabel.Text = "Username";
+            this.usernameLbl.AutoSize = true;
+            this.usernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameLbl.Location = new System.Drawing.Point(379, 196);
+            this.usernameLbl.Name = "usernameLbl";
+            this.usernameLbl.Size = new System.Drawing.Size(164, 37);
+            this.usernameLbl.TabIndex = 3;
+            this.usernameLbl.Text = "Username";
             // 
-            // passwordLabel
+            // passwordLbl
             // 
-            this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordLabel.Location = new System.Drawing.Point(379, 333);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(158, 37);
-            this.passwordLabel.TabIndex = 4;
-            this.passwordLabel.Text = "Password";
+            this.passwordLbl.AutoSize = true;
+            this.passwordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordLbl.Location = new System.Drawing.Point(379, 333);
+            this.passwordLbl.Name = "passwordLbl";
+            this.passwordLbl.Size = new System.Drawing.Size(158, 37);
+            this.passwordLbl.TabIndex = 4;
+            this.passwordLbl.Text = "Password";
             // 
             // exitBtn
             // 
@@ -114,13 +114,14 @@
             this.ClientSize = new System.Drawing.Size(1052, 578);
             this.Controls.Add(this.welcomeLbl);
             this.Controls.Add(this.exitBtn);
-            this.Controls.Add(this.passwordLabel);
-            this.Controls.Add(this.usernameLabel);
+            this.Controls.Add(this.passwordLbl);
+            this.Controls.Add(this.usernameLbl);
             this.Controls.Add(this.signInBtn);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.usernameTxt);
             this.Name = "SignInForm";
             this.Text = "SignInForm";
+            this.Load += new System.EventHandler(this.SignInForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,8 +132,8 @@
         private System.Windows.Forms.RichTextBox usernameTxt;
         private System.Windows.Forms.RichTextBox passwordTxt;
         private System.Windows.Forms.Button signInBtn;
-        private System.Windows.Forms.Label usernameLabel;
-        private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.Label usernameLbl;
+        private System.Windows.Forms.Label passwordLbl;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Label welcomeLbl;
     }
