@@ -54,5 +54,19 @@ namespace ScheduleProgram
                 }
             }
         }
+        private void WriteLogin(string user)
+        {
+            try
+            {
+                using (StreamWriter logUser = new StreamWriter("loginRecord.txt"))
+                {
+                    logUser.WriteLine(Universal.Universals.Username + "successfully logged in at " + DateTime.Now.ToString());
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The file could not be written to.");
+            }
+        }
     }
 }

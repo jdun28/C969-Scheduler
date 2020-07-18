@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace ScheduleProgram.Database
+namespace ScheduleProgram.Universal
 {
     public class Appointment
     {

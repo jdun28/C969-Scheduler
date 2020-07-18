@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScheduleProgram.Database
+namespace ScheduleProgram.Universal
 {
     class SqlDatabase
     {
@@ -13,7 +13,6 @@ namespace ScheduleProgram.Database
         public static string Uid = "U06EtK";
         public static string Password = "53688740958";
 
-        public static string ConnectionString => $"SERVER={Server}; DATABASE={Database}; Uid ={Uid}; Pwd={Password};";
-
+        public static string ConnectionString => $"SERVER={Server}; DATABASE={Database}; Uid ={Uid}; Pwd={Password}; SslMode=None; Convert Zero Datetime = true";
     }
 }
