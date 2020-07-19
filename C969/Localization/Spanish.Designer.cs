@@ -97,7 +97,8 @@ namespace ScheduleProgram.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombre de usuario.
+        ///   Looks up a localized string similar to Nombre de 
+        ///usuario.
         /// </summary>
         internal static string usernameLbl {
             get {
@@ -106,7 +107,8 @@ namespace ScheduleProgram.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bienvenido! por favor inicia sesión..
+        ///   Looks up a localized string similar to Bienvenido!
+        ///Por favor inicia sesión..
         /// </summary>
         internal static string welcomeLbl {
             get {

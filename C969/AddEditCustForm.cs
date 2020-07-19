@@ -27,8 +27,6 @@ namespace ScheduleProgram
             cityCB.DataSource = cityDt;
             cityCB.DisplayMember = "City";
             Customer.populateCustData(country, countryDt);
-            countryCB.DataSource = countryDt;
-            countryCB.DisplayMember = "Country";
         }
 
         public void getConstData(string d, DataTable dt)
@@ -40,10 +38,6 @@ namespace ScheduleProgram
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 connect.Close();
-
-
-
-
             }
         }
 

@@ -20,6 +20,7 @@ namespace ScheduleProgram
     public partial class SignInForm : Form
     {
 
+           
         public SignInForm()
         {
             InitializeComponent();
@@ -28,17 +29,33 @@ namespace ScheduleProgram
 
         private void signInButton_Click(object sender, EventArgs e)
         {
-            if (username == usernameTxt.Text && password == passwordTxt.Text)       
+
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
-                this.Hide();
-                MainForm dash = new MainForm();
-                dash.Show();
+                MySqlDataAdapter adapter = new MySqlDataAdapter("Select * From user where userName = '" + usernameTxt.Text + "' and password = '" + passwordTxt.Text + "'", connect);
+                DataTable loginDt = new DataTable();
+                adapter.Fill(loginDt);
+
+                if ((loginDt.Rows.Count >= 0) &&
+                   usernameTxt.Text == "test" &&
+                   passwordTxt.Text == "test")
+                {
+                    this.Hide();
+                    MainForm dash = new MainForm();
+                    dash.Show();
+                }
+                else
+                {
+                    if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
+                    {
+                        errorLbl.Text = "El nombre de usuario o la contraseña son incorrectos.";
+                    }
+                    else
+                    {
+                        errorLbl.Text = "The username or password are incorrect.";
+                    }
+                }
             }
-            else
-            {
-                errorLbl.Text = "The username or password are incorrect.";
-            }
-            
             
         }
 
@@ -50,6 +67,11 @@ namespace ScheduleProgram
 
         private void SignInForm_Load(object sender, EventArgs e)
         {
+            Spanish();
+        }
+
+        private void Spanish()
+        {
             ResourceManager location = new ResourceManager("ScheduleProgram.Localization.Spanish", Assembly.GetExecutingAssembly());
             {
                 if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
@@ -59,10 +81,8 @@ namespace ScheduleProgram
                     passwordLbl.Text = location.GetString("passwordLbl");
                     signInBtn.Text = location.GetString("signInBtn");
                     exitBtn.Text = location.GetString("exitBtn");
-                    errorLbl.Text = location.GetString("errorLbl");
-
                 }
-            }
+}
         }
         private void WriteLogin(string user)
         {
@@ -78,9 +98,5 @@ namespace ScheduleProgram
                 MessageBox.Show("The file could not be written to.");
             }
         }
-
-        string username = "SELECT userName FROM user;";
-        string password = "SELEECT password FROM user;";
-
     }
 }

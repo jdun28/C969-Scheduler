@@ -53,19 +53,5 @@ namespace ScheduleProgram.Universal
                 connect.Close();
             }
         }
-
-
-        //public static void ScheduledAppointments()
-        //{
-        //    DateTime Curr = Convert.ToDateTime(DateTime.UtcNow);
-        //    DateTime Next15 = Convert.ToDateTime(DateTime.UtcNow).AddMinutes(15);
-
-        //    DataTable upcoming = new DataTable();
-
-        //    using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
-        //    {
-        //        MySqlCommand cmd = new
-        //    }
-        //}
     }
 }

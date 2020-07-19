@@ -40,17 +40,19 @@
             // 
             // usernameTxt
             // 
-            this.usernameTxt.Location = new System.Drawing.Point(549, 238);
+            this.usernameTxt.Location = new System.Drawing.Point(274, 124);
+            this.usernameTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.usernameTxt.Name = "usernameTxt";
-            this.usernameTxt.Size = new System.Drawing.Size(441, 50);
+            this.usernameTxt.Size = new System.Drawing.Size(222, 28);
             this.usernameTxt.TabIndex = 0;
             this.usernameTxt.Text = "";
             // 
             // passwordTxt
             // 
-            this.passwordTxt.Location = new System.Drawing.Point(549, 294);
+            this.passwordTxt.Location = new System.Drawing.Point(274, 171);
+            this.passwordTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.passwordTxt.Name = "passwordTxt";
-            this.passwordTxt.Size = new System.Drawing.Size(441, 50);
+            this.passwordTxt.Size = new System.Drawing.Size(222, 28);
             this.passwordTxt.TabIndex = 1;
             this.passwordTxt.Text = "";
             // 
@@ -58,9 +60,10 @@
             // 
             this.signInBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.signInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signInBtn.Location = new System.Drawing.Point(813, 482);
+            this.signInBtn.Location = new System.Drawing.Point(406, 251);
+            this.signInBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.signInBtn.Name = "signInBtn";
-            this.signInBtn.Size = new System.Drawing.Size(177, 56);
+            this.signInBtn.Size = new System.Drawing.Size(88, 29);
             this.signInBtn.TabIndex = 2;
             this.signInBtn.Text = "Sign In";
             this.signInBtn.UseVisualStyleBackColor = false;
@@ -70,9 +73,10 @@
             // 
             this.usernameLbl.AutoSize = true;
             this.usernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLbl.Location = new System.Drawing.Point(369, 251);
+            this.usernameLbl.Location = new System.Drawing.Point(169, 124);
+            this.usernameLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.usernameLbl.Name = "usernameLbl";
-            this.usernameLbl.Size = new System.Drawing.Size(164, 37);
+            this.usernameLbl.Size = new System.Drawing.Size(83, 20);
             this.usernameLbl.TabIndex = 3;
             this.usernameLbl.Text = "Username";
             // 
@@ -80,9 +84,10 @@
             // 
             this.passwordLbl.AutoSize = true;
             this.passwordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordLbl.Location = new System.Drawing.Point(385, 307);
+            this.passwordLbl.Location = new System.Drawing.Point(169, 171);
+            this.passwordLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.passwordLbl.Name = "passwordLbl";
-            this.passwordLbl.Size = new System.Drawing.Size(158, 37);
+            this.passwordLbl.Size = new System.Drawing.Size(78, 20);
             this.passwordLbl.TabIndex = 4;
             this.passwordLbl.Text = "Password";
             // 
@@ -90,9 +95,10 @@
             // 
             this.exitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitBtn.Location = new System.Drawing.Point(609, 482);
+            this.exitBtn.Location = new System.Drawing.Point(304, 251);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(177, 56);
+            this.exitBtn.Size = new System.Drawing.Size(88, 29);
             this.exitBtn.TabIndex = 5;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = false;
@@ -102,25 +108,27 @@
             // 
             this.welcomeLbl.AutoSize = true;
             this.welcomeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcomeLbl.Location = new System.Drawing.Point(12, 74);
+            this.welcomeLbl.Location = new System.Drawing.Point(6, 38);
+            this.welcomeLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.welcomeLbl.Name = "welcomeLbl";
-            this.welcomeLbl.Size = new System.Drawing.Size(335, 110);
+            this.welcomeLbl.Size = new System.Drawing.Size(170, 58);
             this.welcomeLbl.TabIndex = 6;
             this.welcomeLbl.Text = "Welcome!\r\nPlease sign in.";
             // 
             // errorLbl
             // 
             this.errorLbl.AutoSize = true;
-            this.errorLbl.Location = new System.Drawing.Point(549, 168);
+            this.errorLbl.Location = new System.Drawing.Point(274, 87);
+            this.errorLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorLbl.Name = "errorLbl";
-            this.errorLbl.Size = new System.Drawing.Size(0, 25);
+            this.errorLbl.Size = new System.Drawing.Size(0, 13);
             this.errorLbl.TabIndex = 7;
             // 
             // SignInForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 578);
+            this.ClientSize = new System.Drawing.Size(572, 301);
             this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.welcomeLbl);
             this.Controls.Add(this.exitBtn);
@@ -129,6 +137,7 @@
             this.Controls.Add(this.signInBtn);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.usernameTxt);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SignInForm";
             this.Text = "SignInForm";
             this.Load += new System.EventHandler(this.SignInForm_Load);

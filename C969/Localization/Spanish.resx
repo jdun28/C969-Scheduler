@@ -131,9 +131,11 @@
     <value>Registrarse</value>
   </data>
   <data name="usernameLbl" xml:space="preserve">
-    <value>Nombre de usuario</value>
+    <value>Nombre de 
+usuario</value>
   </data>
   <data name="welcomeLbl" xml:space="preserve">
-    <value>Bienvenido! por favor inicia sesión.</value>
+    <value>Bienvenido!
+Por favor inicia sesión.</value>
   </data>
 </root>
