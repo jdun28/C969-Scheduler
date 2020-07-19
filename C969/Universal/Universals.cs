@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,9 @@ namespace ScheduleProgram.Universal
         public static int CurrentApptIndex { get; set; }
 
         public static string Username { get; set; }
+        public static string Password { get; set; }
+
+
 
     }
 }

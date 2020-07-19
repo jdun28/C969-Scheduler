@@ -34,7 +34,6 @@
             this.nameLbl = new System.Windows.Forms.Label();
             this.addressLbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cancelCustBtn = new System.Windows.Forms.Button();
             this.saveCustBtn = new System.Windows.Forms.Button();
@@ -42,7 +41,6 @@
             this.phoneTxt = new System.Windows.Forms.RichTextBox();
             this.phoneLbl = new System.Windows.Forms.Label();
             this.cityCB = new System.Windows.Forms.ComboBox();
-            this.countryCB = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // nameTxt
@@ -68,7 +66,7 @@
             // zipTxt
             // 
             this.zipTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zipTxt.Location = new System.Drawing.Point(143, 240);
+            this.zipTxt.Location = new System.Drawing.Point(143, 198);
             this.zipTxt.Margin = new System.Windows.Forms.Padding(2);
             this.zipTxt.Name = "zipTxt";
             this.zipTxt.Size = new System.Drawing.Size(197, 36);
@@ -101,29 +99,18 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(104, 180);
+            this.label6.Location = new System.Drawing.Point(104, 173);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 20);
             this.label6.TabIndex = 13;
             this.label6.Text = "City";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(76, 218);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 20);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Country";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(44, 255);
+            this.label8.Location = new System.Drawing.Point(44, 213);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(95, 20);
@@ -167,7 +154,7 @@
             // phoneTxt
             // 
             this.phoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneTxt.Location = new System.Drawing.Point(143, 278);
+            this.phoneTxt.Location = new System.Drawing.Point(143, 236);
             this.phoneTxt.Margin = new System.Windows.Forms.Padding(2);
             this.phoneTxt.Name = "phoneTxt";
             this.phoneTxt.Size = new System.Drawing.Size(197, 36);
@@ -179,7 +166,7 @@
             // 
             this.phoneLbl.AutoSize = true;
             this.phoneLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneLbl.Location = new System.Drawing.Point(86, 293);
+            this.phoneLbl.Location = new System.Drawing.Point(86, 251);
             this.phoneLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.phoneLbl.Name = "phoneLbl";
             this.phoneLbl.Size = new System.Drawing.Size(55, 20);
@@ -190,27 +177,17 @@
             // 
             this.cityCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cityCB.FormattingEnabled = true;
-            this.cityCB.Location = new System.Drawing.Point(143, 176);
+            this.cityCB.Location = new System.Drawing.Point(143, 169);
             this.cityCB.Name = "cityCB";
             this.cityCB.Size = new System.Drawing.Size(197, 24);
             this.cityCB.TabIndex = 27;
             this.cityCB.SelectedIndexChanged += new System.EventHandler(this.cityCB_SelectedIndexChanged);
-            // 
-            // countryCB
-            // 
-            this.countryCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countryCB.FormattingEnabled = true;
-            this.countryCB.Location = new System.Drawing.Point(143, 211);
-            this.countryCB.Name = "countryCB";
-            this.countryCB.Size = new System.Drawing.Size(197, 24);
-            this.countryCB.TabIndex = 28;
             // 
             // AddEditCustForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 402);
-            this.Controls.Add(this.countryCB);
             this.Controls.Add(this.cityCB);
             this.Controls.Add(this.phoneLbl);
             this.Controls.Add(this.phoneTxt);
@@ -218,7 +195,6 @@
             this.Controls.Add(this.saveCustBtn);
             this.Controls.Add(this.cancelCustBtn);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.addressLbl);
             this.Controls.Add(this.nameLbl);
@@ -241,7 +217,6 @@
         private System.Windows.Forms.Label nameLbl;
         private System.Windows.Forms.Label addressLbl;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button cancelCustBtn;
         private System.Windows.Forms.Button saveCustBtn;
@@ -249,6 +224,5 @@
         private System.Windows.Forms.RichTextBox phoneTxt;
         private System.Windows.Forms.Label phoneLbl;
         private System.Windows.Forms.ComboBox cityCB;
-        private System.Windows.Forms.ComboBox countryCB;
     }
 }

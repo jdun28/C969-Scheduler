@@ -1,4 +1,4 @@
-﻿using ScheduleProgram.Database;
+﻿using ScheduleProgram.Universal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

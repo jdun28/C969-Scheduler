@@ -35,11 +35,12 @@
             this.passwordLbl = new System.Windows.Forms.Label();
             this.exitBtn = new System.Windows.Forms.Button();
             this.welcomeLbl = new System.Windows.Forms.Label();
+            this.errorLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // usernameTxt
             // 
-            this.usernameTxt.Location = new System.Drawing.Point(549, 183);
+            this.usernameTxt.Location = new System.Drawing.Point(549, 238);
             this.usernameTxt.Name = "usernameTxt";
             this.usernameTxt.Size = new System.Drawing.Size(441, 50);
             this.usernameTxt.TabIndex = 0;
@@ -47,7 +48,7 @@
             // 
             // passwordTxt
             // 
-            this.passwordTxt.Location = new System.Drawing.Point(549, 320);
+            this.passwordTxt.Location = new System.Drawing.Point(549, 294);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(441, 50);
             this.passwordTxt.TabIndex = 1;
@@ -69,7 +70,7 @@
             // 
             this.usernameLbl.AutoSize = true;
             this.usernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLbl.Location = new System.Drawing.Point(379, 196);
+            this.usernameLbl.Location = new System.Drawing.Point(369, 251);
             this.usernameLbl.Name = "usernameLbl";
             this.usernameLbl.Size = new System.Drawing.Size(164, 37);
             this.usernameLbl.TabIndex = 3;
@@ -79,7 +80,7 @@
             // 
             this.passwordLbl.AutoSize = true;
             this.passwordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordLbl.Location = new System.Drawing.Point(379, 333);
+            this.passwordLbl.Location = new System.Drawing.Point(385, 307);
             this.passwordLbl.Name = "passwordLbl";
             this.passwordLbl.Size = new System.Drawing.Size(158, 37);
             this.passwordLbl.TabIndex = 4;
@@ -107,11 +108,20 @@
             this.welcomeLbl.TabIndex = 6;
             this.welcomeLbl.Text = "Welcome!\r\nPlease sign in.";
             // 
+            // errorLbl
+            // 
+            this.errorLbl.AutoSize = true;
+            this.errorLbl.Location = new System.Drawing.Point(549, 168);
+            this.errorLbl.Name = "errorLbl";
+            this.errorLbl.Size = new System.Drawing.Size(0, 25);
+            this.errorLbl.TabIndex = 7;
+            // 
             // SignInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 578);
+            this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.welcomeLbl);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.passwordLbl);
@@ -136,6 +146,7 @@
         private System.Windows.Forms.Label passwordLbl;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Label welcomeLbl;
+        private System.Windows.Forms.Label errorLbl;
     }
 }
 

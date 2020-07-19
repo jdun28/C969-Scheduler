@@ -61,20 +61,20 @@ namespace ScheduleProgram.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El nombre de usuario o la contraseña son incorrectos..
+        /// </summary>
+        internal static string errorLbl {
+            get {
+                return ResourceManager.GetString("errorLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salida.
         /// </summary>
         internal static string exitBtn {
             get {
                 return ResourceManager.GetString("exitBtn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to El nombre de usuario o la contraseña son incorrectos..
-        /// </summary>
-        internal static string MessageBox {
-            get {
-                return ResourceManager.GetString("MessageBox", resourceCulture);
             }
         }
         

@@ -1,4 +1,6 @@
-﻿using ScheduleProgram.Localization;
+﻿using MySql.Data.MySqlClient;
+using ScheduleProgram.Localization;
+using ScheduleProgram.Universal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,10 +28,17 @@ namespace ScheduleProgram
 
         private void signInButton_Click(object sender, EventArgs e)
         {
+            if (username == usernameTxt.Text && password == passwordTxt.Text)       
+            {
+                this.Hide();
+                MainForm dash = new MainForm();
+                dash.Show();
+            }
+            else
+            {
+                errorLbl.Text = "The username or password are incorrect.";
+            }
             
-            this.Hide();
-            MainForm dash = new MainForm();
-            dash.Show();
             
         }
 
@@ -50,6 +59,7 @@ namespace ScheduleProgram
                     passwordLbl.Text = location.GetString("passwordLbl");
                     signInBtn.Text = location.GetString("signInBtn");
                     exitBtn.Text = location.GetString("exitBtn");
+                    errorLbl.Text = location.GetString("errorLbl");
 
                 }
             }
@@ -60,7 +70,7 @@ namespace ScheduleProgram
             {
                 using (StreamWriter logUser = new StreamWriter("loginRecord.txt"))
                 {
-                    logUser.WriteLine(Universal.Universals.Username + "successfully logged in at " + DateTime.Now.ToString());
+                    logUser.WriteLine(Universals.Username + "successfully logged in at " + DateTime.Now.ToString());
                 }
             }
             catch (Exception)
@@ -68,5 +78,9 @@ namespace ScheduleProgram
                 MessageBox.Show("The file could not be written to.");
             }
         }
+
+        string username = "SELECT userName FROM user;";
+        string password = "SELEECT password FROM user;";
+
     }
 }
