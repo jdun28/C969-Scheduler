@@ -17,7 +17,7 @@ namespace ScheduleProgram
         {
             InitializeComponent();
             DataTable apptDt = new DataTable();
-            Appointment.populateApptData(Customer.custQuery, apptDt);
+            Appointment.populateApptData(Customer.findAllCustQuery, apptDt);
             custNameCB.DataSource = apptDt;
             custNameCB.DisplayMember = "CustomerName";
 

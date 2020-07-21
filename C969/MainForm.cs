@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using ScheduleProgram.Universal;
+using MySqlX.XDevAPI.Relational;
 
 namespace ScheduleProgram
 {
@@ -19,14 +20,18 @@ namespace ScheduleProgram
         DataTable custDt = new DataTable();
         DataTable apptDt = new DataTable();
         DateTime todayDate;
+        
 
         public MainForm()
         {  
             InitializeComponent();
             todayDate = DateTime.Now;
             myCal.AddBoldedDate(todayDate);
-            Customer.populateCustData(Customer.custQuery, custDt);
+            Universals.CurrentCustIndex = -1;
+            Customer.populateCustData(Customer.findAllCustQuery, custDt);
             custDgv.DataSource = custDt;
+            custDgv.Columns["customerID"].Visible = false;
+            Universals.CurrentApptIndex = -1;
             Appointment.populateApptData(Appointment.apptQuery, apptDt);
             apptDgv.DataSource = apptDt;
             
@@ -41,7 +46,7 @@ namespace ScheduleProgram
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+           Application.Exit();
         }
 
         private void addApptBtn_Click(object sender, EventArgs e)
@@ -68,9 +73,18 @@ namespace ScheduleProgram
 
         private void updateCustBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AddEditCustForm editCust = new AddEditCustForm();
-            editCust.Show();
+            SetCustSelectedIndex();
+            if (Universals.CurrentCustIndex >= 0)
+            {
+                
+                this.Hide();
+                AddEditCustForm editCust = new AddEditCustForm();
+                editCust.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer to update.");
+            }
         }
 
         private void udpateApptBtn_Click(object sender, EventArgs e)
@@ -78,6 +92,45 @@ namespace ScheduleProgram
             this.Hide();
             AddEditApptForm editAppt = new AddEditApptForm();
             editAppt.Show();
+        }
+
+        private void getCust(Row row)
+        {
+            using (MySqlConnection connect = new MySqlConnection (SqlDatabase.ConnectionString))
+            {
+                DataTable getcust = new DataTable();
+                connect.Open();
+                MySqlCommand cmd = new MySqlCommand(Customer.findAllCustQuery, connect);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                getcust.Load(reader);
+                connect.Close();
+            }
+        }
+
+        private void SetCustSelectedIndex ()
+        {
+            if (custDgv.SelectedRows.Count !=0)
+            {
+                DataGridViewRow row = custDgv.SelectedRows[0];
+                Universals.CurrentCustIndex = row.Index;
+            }
+            else
+            {
+                Universals.CurrentCustIndex = -1;
+            }
+        }
+
+        private void SetApptSelectedIndex ()
+        {
+            if (apptDgv.SelectedRows.Count !=0)
+            {
+                DataGridViewRow row = apptDgv.SelectedRows[0];
+                Universals.CurrentApptIndex = row.Index;
+            }
+            else
+            {
+                Universals.CurrentApptIndex = -1;
+            }
         }
     }
 }

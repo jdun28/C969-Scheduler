@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,9 +37,7 @@ namespace ScheduleProgram
                 DataTable loginDt = new DataTable();
                 adapter.Fill(loginDt);
 
-                if ((loginDt.Rows.Count >= 0) &&
-                   usernameTxt.Text == "test" &&
-                   passwordTxt.Text == "test")
+                if (loginDt.Rows.Count > 0)
                 {
                     this.Hide();
                     MainForm dash = new MainForm();
@@ -56,6 +55,9 @@ namespace ScheduleProgram
                     }
                 }
             }
+
+            WriteLogin();
+            CheckAppt();
             
         }
 
@@ -82,21 +84,59 @@ namespace ScheduleProgram
                     signInBtn.Text = location.GetString("signInBtn");
                     exitBtn.Text = location.GetString("exitBtn");
                 }
-}
+            }
         }
-        private void WriteLogin(string user)
+        private void WriteLogin()
         {
             try
             {
-                using (StreamWriter logUser = new StreamWriter("loginRecord.txt"))
+                //Checking to see if loginRecord.txt exists
+                //If it exists write to it
+                if (File.Exists("loginRecord.txt"))
                 {
-                    logUser.WriteLine(Universals.Username + "successfully logged in at " + DateTime.Now.ToString());
+                    using (StreamWriter e = File.AppendText("loginRecord.txt"))
+                    {
+                        e.WriteLine(usernameTxt.Text + " successfully logged in at " + DateTime.Now.ToString(), e);
+                    }
                 }
+                //if it does not exist create new file and write
+                else
+                {
+                    using (StreamWriter logUser = new StreamWriter("loginRecord.txt"))
+                    {
+                        logUser.WriteLine(usernameTxt.Text + " successfully logged in at " + DateTime.Now.ToString());
+                    }
+                }          
             }
             catch (Exception)
             {
                 MessageBox.Show("The file could not be written to.");
             }
         }
+
+        private void CheckAppt()
+        {
+            DateTime Current = Convert.ToDateTime(DateTime.UtcNow);
+            DateTime Future = Convert.ToDateTime(DateTime.UtcNow).AddMinutes(15);
+
+            DataTable upcoming = new DataTable();
+
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                connect.Open();
+                MySqlCommand apptCheck = new MySqlCommand("SELECT * from appointment where start between '" +
+                    Current.ToString("yyy-MM-dd HH:mm:ss") + "' AND '" +
+                    Future.ToString("yyyy-MM-dd HH:mm:ss") + "'", connect);
+                MySqlDataReader apptRead = apptCheck.ExecuteReader();
+                upcoming.Load(apptRead);
+
+                if (upcoming.Rows.Count > 0)
+                {
+                    MessageBox.Show(upcoming.ToString(), "Upcoming Appointments!");
+                }
+                connect.Close();
+            }
+        }
+
     }
 }

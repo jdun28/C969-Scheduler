@@ -51,9 +51,11 @@
             this.custDgv.Location = new System.Drawing.Point(432, 58);
             this.custDgv.Margin = new System.Windows.Forms.Padding(2);
             this.custDgv.Name = "custDgv";
+            this.custDgv.ReadOnly = true;
             this.custDgv.RowHeadersVisible = false;
             this.custDgv.RowHeadersWidth = 82;
             this.custDgv.RowTemplate.Height = 33;
+            this.custDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.custDgv.Size = new System.Drawing.Size(600, 177);
             this.custDgv.TabIndex = 0;
             // 
@@ -63,9 +65,11 @@
             this.apptDgv.Location = new System.Drawing.Point(432, 319);
             this.apptDgv.Margin = new System.Windows.Forms.Padding(2);
             this.apptDgv.Name = "apptDgv";
+            this.apptDgv.ReadOnly = true;
             this.apptDgv.RowHeadersVisible = false;
             this.apptDgv.RowHeadersWidth = 82;
             this.apptDgv.RowTemplate.Height = 33;
+            this.apptDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.apptDgv.Size = new System.Drawing.Size(600, 177);
             this.apptDgv.TabIndex = 1;
             // 

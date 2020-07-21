@@ -41,6 +41,7 @@
             this.phoneTxt = new System.Windows.Forms.RichTextBox();
             this.phoneLbl = new System.Windows.Forms.Label();
             this.cityCB = new System.Windows.Forms.ComboBox();
+            this.errorLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameTxt
@@ -52,6 +53,7 @@
             this.nameTxt.Size = new System.Drawing.Size(197, 36);
             this.nameTxt.TabIndex = 0;
             this.nameTxt.Text = "";
+            this.nameTxt.TextChanged += new System.EventHandler(this.nameTxt_TextChanged);
             // 
             // addressTxt
             // 
@@ -62,6 +64,7 @@
             this.addressTxt.Size = new System.Drawing.Size(197, 36);
             this.addressTxt.TabIndex = 2;
             this.addressTxt.Text = "";
+            this.addressTxt.TextChanged += new System.EventHandler(this.addressTxt_TextChanged);
             // 
             // zipTxt
             // 
@@ -72,6 +75,7 @@
             this.zipTxt.Size = new System.Drawing.Size(197, 36);
             this.zipTxt.TabIndex = 6;
             this.zipTxt.Text = "";
+            this.zipTxt.TextChanged += new System.EventHandler(this.zipTxt_TextChanged);
             // 
             // nameLbl
             // 
@@ -139,6 +143,7 @@
             this.saveCustBtn.TabIndex = 17;
             this.saveCustBtn.Text = "Save";
             this.saveCustBtn.UseVisualStyleBackColor = true;
+            this.saveCustBtn.Click += new System.EventHandler(this.saveCustBtn_Click);
             // 
             // label11
             // 
@@ -181,13 +186,23 @@
             this.cityCB.Name = "cityCB";
             this.cityCB.Size = new System.Drawing.Size(197, 24);
             this.cityCB.TabIndex = 27;
-            this.cityCB.SelectedIndexChanged += new System.EventHandler(this.cityCB_SelectedIndexChanged);
+            // 
+            // errorLbl
+            // 
+            this.errorLbl.AutoSize = true;
+            this.errorLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLbl.ForeColor = System.Drawing.Color.Red;
+            this.errorLbl.Location = new System.Drawing.Point(140, 297);
+            this.errorLbl.Name = "errorLbl";
+            this.errorLbl.Size = new System.Drawing.Size(0, 16);
+            this.errorLbl.TabIndex = 28;
             // 
             // AddEditCustForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 402);
+            this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.cityCB);
             this.Controls.Add(this.phoneLbl);
             this.Controls.Add(this.phoneTxt);
@@ -204,6 +219,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddEditCustForm";
             this.Text = "CustomerDetails";
+            this.Load += new System.EventHandler(this.AddEditCustForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +240,6 @@
         private System.Windows.Forms.RichTextBox phoneTxt;
         private System.Windows.Forms.Label phoneLbl;
         private System.Windows.Forms.ComboBox cityCB;
+        private System.Windows.Forms.Label errorLbl;
     }
 }
