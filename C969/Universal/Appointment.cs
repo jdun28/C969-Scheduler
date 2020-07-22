@@ -38,7 +38,7 @@ namespace ScheduleProgram.Universal
 
         //query to create appointment view for apptDgv
         public static string apptQuery =
-            "SELECT customer.customerName, appointment.appointmentId, appointment.type, appointment.start, appointment.end "
+            "SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.type, appointment.start, appointment.end "
             + " FROM appointment "
             + " INNER JOIN customer ON appointment.customerId = customer.customerId;";
 

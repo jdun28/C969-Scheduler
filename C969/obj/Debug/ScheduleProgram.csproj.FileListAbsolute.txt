@@ -29,7 +29,6 @@ C:\Users\Jen\Documents\GitHub\Dunlap969\C969\obj\Debug\ScheduleProgram.exe
 C:\Users\Jen\Documents\GitHub\Dunlap969\C969\obj\Debug\ScheduleProgram.pdb
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.exe.config
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.AddEditApptForm.resources
-C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.AddEditCustForm.resources
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.MainForm.resources
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.Properties.Resources.resources
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.SignInForm.resources
@@ -57,3 +56,5 @@ C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.exe
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.pdb
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.csprojAssemblyReference.cache
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.Localization.Spanish.resources
+C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.ModifyCustForm.resources
+C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.AddCustForm.resources

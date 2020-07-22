@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.apptTypeTxt = new System.Windows.Forms.RichTextBox();
             this.apptStartTxt = new System.Windows.Forms.RichTextBox();
             this.apptEndTxt = new System.Windows.Forms.RichTextBox();
             this.apptCustNameLbl = new System.Windows.Forms.Label();
@@ -39,22 +38,13 @@
             this.saveApptBtn = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.custNameCB = new System.Windows.Forms.ComboBox();
+            this.typeCB = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // apptTypeTxt
-            // 
-            this.apptTypeTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apptTypeTxt.Location = new System.Drawing.Point(143, 115);
-            this.apptTypeTxt.Margin = new System.Windows.Forms.Padding(2);
-            this.apptTypeTxt.Name = "apptTypeTxt";
-            this.apptTypeTxt.Size = new System.Drawing.Size(197, 36);
-            this.apptTypeTxt.TabIndex = 2;
-            this.apptTypeTxt.Text = "";
             // 
             // apptStartTxt
             // 
             this.apptStartTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apptStartTxt.Location = new System.Drawing.Point(143, 153);
+            this.apptStartTxt.Location = new System.Drawing.Point(143, 145);
             this.apptStartTxt.Margin = new System.Windows.Forms.Padding(2);
             this.apptStartTxt.Name = "apptStartTxt";
             this.apptStartTxt.Size = new System.Drawing.Size(197, 36);
@@ -64,7 +54,7 @@
             // apptEndTxt
             // 
             this.apptEndTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apptEndTxt.Location = new System.Drawing.Point(143, 190);
+            this.apptEndTxt.Location = new System.Drawing.Point(143, 185);
             this.apptEndTxt.Margin = new System.Windows.Forms.Padding(2);
             this.apptEndTxt.Name = "apptEndTxt";
             this.apptEndTxt.Size = new System.Drawing.Size(197, 36);
@@ -86,7 +76,7 @@
             // 
             this.apptTypeLbl.AutoSize = true;
             this.apptTypeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apptTypeLbl.Location = new System.Drawing.Point(96, 131);
+            this.apptTypeLbl.Location = new System.Drawing.Point(96, 120);
             this.apptTypeLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.apptTypeLbl.Name = "apptTypeLbl";
             this.apptTypeLbl.Size = new System.Drawing.Size(43, 20);
@@ -97,7 +87,7 @@
             // 
             this.apptStartLbl.AutoSize = true;
             this.apptStartLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apptStartLbl.Location = new System.Drawing.Point(58, 168);
+            this.apptStartLbl.Location = new System.Drawing.Point(57, 161);
             this.apptStartLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.apptStartLbl.Name = "apptStartLbl";
             this.apptStartLbl.Size = new System.Drawing.Size(82, 20);
@@ -108,7 +98,7 @@
             // 
             this.apptEndLbl.AutoSize = true;
             this.apptEndLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apptEndLbl.Location = new System.Drawing.Point(63, 206);
+            this.apptEndLbl.Location = new System.Drawing.Point(63, 201);
             this.apptEndLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.apptEndLbl.Name = "apptEndLbl";
             this.apptEndLbl.Size = new System.Drawing.Size(76, 20);
@@ -159,11 +149,21 @@
             this.custNameCB.TabIndex = 24;
             this.custNameCB.SelectedIndexChanged += new System.EventHandler(this.custNameCB_SelectedIndexChanged);
             // 
+            // typeCB
+            // 
+            this.typeCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.typeCB.FormattingEnabled = true;
+            this.typeCB.Location = new System.Drawing.Point(144, 116);
+            this.typeCB.Name = "typeCB";
+            this.typeCB.Size = new System.Drawing.Size(193, 24);
+            this.typeCB.TabIndex = 25;
+            // 
             // AddEditApptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 367);
+            this.Controls.Add(this.typeCB);
             this.Controls.Add(this.custNameCB);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.saveApptBtn);
@@ -174,7 +174,6 @@
             this.Controls.Add(this.apptCustNameLbl);
             this.Controls.Add(this.apptEndTxt);
             this.Controls.Add(this.apptStartTxt);
-            this.Controls.Add(this.apptTypeTxt);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddEditApptForm";
             this.Text = "AppointmentDetails";
@@ -184,7 +183,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.RichTextBox apptTypeTxt;
         private System.Windows.Forms.RichTextBox apptStartTxt;
         private System.Windows.Forms.RichTextBox apptEndTxt;
         private System.Windows.Forms.Label apptCustNameLbl;
@@ -195,5 +193,6 @@
         private System.Windows.Forms.Button saveApptBtn;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox custNameCB;
+        private System.Windows.Forms.ComboBox typeCB;
     }
 }

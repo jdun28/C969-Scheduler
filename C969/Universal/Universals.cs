@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -16,19 +17,21 @@ namespace ScheduleProgram.Universal
 
         public static Customer CurrentCustomer { get; set; }
 
-        public static string CurrentUser()
+        public static string CurrentUser = "test";
+
+        public static void GetData(string d, DataTable dt)
         {
-            using (MySqlConnection con = new MySqlConnection(SqlDatabase.ConnectionString))
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
-                con.Open();
-                MySqlCommand user = new MySqlCommand("SELECT userName FROM user;", con);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(user);
-                con.Close();
-                return user.ToString();               
+                MySqlCommand cmd = new MySqlCommand(d, connect);
+                connect.Open();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                connect.Close();
             }
         }
 
-      public static bool IsInt(string text)
+        public static bool IsInt(string text)
         {
             int number;
             return IsNotNullOrEmpty(text) &&

@@ -1,4 +1,5 @@
-﻿using ScheduleProgram.Universal;
+﻿using MySql.Data.MySqlClient;
+using ScheduleProgram.Universal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,18 @@ namespace ScheduleProgram
     {
         public AddEditApptForm()
         {
-            InitializeComponent();
-            DataTable apptDt = new DataTable();
-            Appointment.populateApptData(Customer.findAllCustQuery, apptDt);
-            custNameCB.DataSource = apptDt;
-            custNameCB.DisplayMember = "CustomerName";
-
+            string customerName= "SELECT customerName from customer;";
+            string apptType = "SELECT type from appointment;";
+            DataTable customers = new DataTable();
+            DataTable type = new DataTable();
+            InitializeComponent();          
+            Universals.GetData(customerName, customers);
+            custNameCB.DataSource = customers;
+            custNameCB.DisplayMember = "customerName";
+            Universals.GetData(apptType, type);
+            typeCB.DataSource = type;
+            typeCB.DisplayMember = "type";
         }
-
         private void cancelApptBtn_Click(object sender, EventArgs e)
         {
             this.Hide();

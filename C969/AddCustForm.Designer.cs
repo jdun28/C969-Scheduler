@@ -1,6 +1,6 @@
 ﻿namespace ScheduleProgram
 {
-    partial class AddEditCustForm
+    partial class AddCustForm
     {
         /// <summary>
         /// Required designer variable.
@@ -192,7 +192,7 @@
             this.errorLbl.AutoSize = true;
             this.errorLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLbl.ForeColor = System.Drawing.Color.Red;
-            this.errorLbl.Location = new System.Drawing.Point(140, 297);
+            this.errorLbl.Location = new System.Drawing.Point(105, 299);
             this.errorLbl.Name = "errorLbl";
             this.errorLbl.Size = new System.Drawing.Size(0, 16);
             this.errorLbl.TabIndex = 28;

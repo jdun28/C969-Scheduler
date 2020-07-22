@@ -41,7 +41,7 @@
             // usernameTxt
             // 
             this.usernameTxt.Location = new System.Drawing.Point(274, 124);
-            this.usernameTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.usernameTxt.Margin = new System.Windows.Forms.Padding(2);
             this.usernameTxt.Name = "usernameTxt";
             this.usernameTxt.Size = new System.Drawing.Size(222, 28);
             this.usernameTxt.TabIndex = 0;
@@ -50,7 +50,7 @@
             // passwordTxt
             // 
             this.passwordTxt.Location = new System.Drawing.Point(274, 171);
-            this.passwordTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwordTxt.Margin = new System.Windows.Forms.Padding(2);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(222, 28);
             this.passwordTxt.TabIndex = 1;
@@ -61,7 +61,7 @@
             this.signInBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.signInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signInBtn.Location = new System.Drawing.Point(406, 251);
-            this.signInBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.signInBtn.Margin = new System.Windows.Forms.Padding(2);
             this.signInBtn.Name = "signInBtn";
             this.signInBtn.Size = new System.Drawing.Size(88, 29);
             this.signInBtn.TabIndex = 2;
@@ -96,7 +96,7 @@
             this.exitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitBtn.Location = new System.Drawing.Point(304, 251);
-            this.exitBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(2);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(88, 29);
             this.exitBtn.TabIndex = 5;
@@ -118,6 +118,7 @@
             // errorLbl
             // 
             this.errorLbl.AutoSize = true;
+            this.errorLbl.ForeColor = System.Drawing.Color.Red;
             this.errorLbl.Location = new System.Drawing.Point(274, 87);
             this.errorLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorLbl.Name = "errorLbl";
@@ -137,7 +138,7 @@
             this.Controls.Add(this.signInBtn);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.usernameTxt);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SignInForm";
             this.Text = "SignInForm";
             this.Load += new System.EventHandler(this.SignInForm_Load);

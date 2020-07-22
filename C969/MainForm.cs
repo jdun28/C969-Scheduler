@@ -40,7 +40,7 @@ namespace ScheduleProgram
         private void addCustBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AddEditCustForm newCust = new AddEditCustForm();
+            AddCustForm newCust = new AddCustForm();
             newCust.Show();
         }
 
@@ -76,9 +76,8 @@ namespace ScheduleProgram
             SetCustSelectedIndex();
             if (Universals.CurrentCustIndex >= 0)
             {
-                
                 this.Hide();
-                AddEditCustForm editCust = new AddEditCustForm();
+                ModifyCustForm editCust = new ModifyCustForm();
                 editCust.Show();
             }
             else
@@ -92,19 +91,6 @@ namespace ScheduleProgram
             this.Hide();
             AddEditApptForm editAppt = new AddEditApptForm();
             editAppt.Show();
-        }
-
-        private void getCust(Row row)
-        {
-            using (MySqlConnection connect = new MySqlConnection (SqlDatabase.ConnectionString))
-            {
-                DataTable getcust = new DataTable();
-                connect.Open();
-                MySqlCommand cmd = new MySqlCommand(Customer.findAllCustQuery, connect);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                getcust.Load(reader);
-                connect.Close();
-            }
         }
 
         private void SetCustSelectedIndex ()
