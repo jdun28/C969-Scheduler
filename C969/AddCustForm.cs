@@ -36,22 +36,12 @@ namespace ScheduleProgram
             string city = "SELECT city from city;";
             DataTable cityDt = new DataTable();
             InitializeComponent();
-            GetCities(city, cityDt);
+            Universals.GetData(city, cityDt);
             cityCB.DataSource = cityDt;
             cityCB.DisplayMember = "City";
             
         }
-        public void GetCities(string d, DataTable dt)
-        {
-            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
-            {
-                MySqlCommand cmd = new MySqlCommand(d, connect);
-                connect.Open();
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                adapter.Fill(dt);
-                connect.Close();
-            }
-        }
+        
         private void cancelCustBtn_Click(object sender, EventArgs e)
         {
             this.Hide();

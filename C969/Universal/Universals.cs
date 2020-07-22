@@ -17,7 +17,37 @@ namespace ScheduleProgram.Universal
 
         public static Customer CurrentCustomer { get; set; }
 
-        public static string CurrentUser = "test";
+        public static string CurrentUser { get; set; }
+
+        public static int CurrentUserID { get; set; }
+
+        public static void GetCurrentUserName()
+        {
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                string getUser = "SELECT userName FROM user;";
+                MySqlCommand user = new MySqlCommand(getUser, connect);
+                var userResult = user.ExecuteScalar();
+                if (userResult != null)
+                {
+                    CurrentUser = userResult.ToString();
+                }
+            }
+        }
+
+        public static void GetCurrentUserID()
+        {
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                string getID = "SELECT userId FROM user;";
+                MySqlCommand id = new MySqlCommand(getID, connect);
+                var userID = id.ExecuteScalar();
+                if (userID != null)
+                {
+                    CurrentUserID = Convert.ToInt32(userID);
+                }
+            }
+        }
 
         public static void GetData(string d, DataTable dt)
         {
