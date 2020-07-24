@@ -1,6 +1,6 @@
 ﻿namespace ScheduleProgram
 {
-    partial class AddCustForm
+    partial class AddEditCustForm
     {
         /// <summary>
         /// Required designer variable.
@@ -197,7 +197,7 @@
             this.errorLbl.Size = new System.Drawing.Size(0, 16);
             this.errorLbl.TabIndex = 28;
             // 
-            // AddEditCustForm
+            // AddCustForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -217,7 +217,7 @@
             this.Controls.Add(this.addressTxt);
             this.Controls.Add(this.nameTxt);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "AddEditCustForm";
+            this.Name = "AddCustForm";
             this.Text = "CustomerDetails";
             this.Load += new System.EventHandler(this.AddEditCustForm_Load);
             this.ResumeLayout(false);
@@ -226,10 +226,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox nameTxt;
-        private System.Windows.Forms.RichTextBox addressTxt;
-        private System.Windows.Forms.RichTextBox zipTxt;
         private System.Windows.Forms.Label nameLbl;
         private System.Windows.Forms.Label addressLbl;
         private System.Windows.Forms.Label label6;
@@ -237,9 +233,12 @@
         private System.Windows.Forms.Button cancelCustBtn;
         private System.Windows.Forms.Button saveCustBtn;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.RichTextBox phoneTxt;
         private System.Windows.Forms.Label phoneLbl;
-        private System.Windows.Forms.ComboBox cityCB;
         private System.Windows.Forms.Label errorLbl;
+        public System.Windows.Forms.RichTextBox addressTxt;
+        public System.Windows.Forms.RichTextBox zipTxt;
+        public System.Windows.Forms.RichTextBox phoneTxt;
+        public System.Windows.Forms.ComboBox cityCB;
+        public System.Windows.Forms.RichTextBox nameTxt;
     }
 }

@@ -7,13 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace ScheduleProgram.Universal
 {
     public class Customer
     {
-
-
         //query to create selection for custDgv
         public static string findAllCustQuery =
             "SELECT customerId, customerName, address.address, city.city, address.postalCode, country.country, address.phone "
@@ -33,6 +32,5 @@ namespace ScheduleProgram.Universal
                 connect.Close();
             }
         }
-
     }
 }

@@ -15,7 +15,8 @@ namespace ScheduleProgram.Universal
         public static int CurrentCustIndex { get; set; }
         public static int CurrentApptIndex { get; set; }
 
-        public static Customer CurrentCustomer { get; set; }
+        public static int CustomerID { get; set; }
+        public static Appointment CurrentAppointment { get; set; }
 
         public static string CurrentUser { get; set; }
 

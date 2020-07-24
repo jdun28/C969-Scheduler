@@ -61,11 +61,11 @@
     </Compile>
     <Compile Include="Universal\Appointment.cs" />
     <Compile Include="Universal\Customer.cs" />
-    <Compile Include="AddCustForm.cs">
+    <Compile Include="AddEditCustForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCustForm.Designer.cs">
-      <DependentUpon>AddCustForm.cs</DependentUpon>
+    <Compile Include="AddEditCustForm.Designer.cs">
+      <DependentUpon>AddEditCustForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Universal\SqlDatabase.cs" />
     <Compile Include="Localization\Spanish.Designer.cs">
@@ -94,8 +94,8 @@
     <EmbeddedResource Include="ModifyCustForm.resx">
       <DependentUpon>ModifyCustForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddCustForm.resx">
-      <DependentUpon>AddCustForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddEditCustForm.resx">
+      <DependentUpon>AddEditCustForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Spanish.resx">
       <Generator>ResXFileCodeGenerator</Generator>

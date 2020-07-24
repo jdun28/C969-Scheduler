@@ -50,6 +50,7 @@
             this.custDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.custDgv.Location = new System.Drawing.Point(432, 58);
             this.custDgv.Margin = new System.Windows.Forms.Padding(2);
+            this.custDgv.MultiSelect = false;
             this.custDgv.Name = "custDgv";
             this.custDgv.ReadOnly = true;
             this.custDgv.RowHeadersVisible = false;
@@ -58,6 +59,7 @@
             this.custDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.custDgv.Size = new System.Drawing.Size(600, 177);
             this.custDgv.TabIndex = 0;
+            this.custDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custDgv_CellContentClick);
             // 
             // apptDgv
             // 
@@ -209,7 +211,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 608);
+            this.ClientSize = new System.Drawing.Size(1217, 901);
             this.Controls.Add(this.dayRb);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.monthRb);

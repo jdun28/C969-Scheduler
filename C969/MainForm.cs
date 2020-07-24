@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using ScheduleProgram.Universal;
 using MySqlX.XDevAPI.Relational;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ScheduleProgram
 {
@@ -20,6 +21,7 @@ namespace ScheduleProgram
         DataTable custDt = new DataTable();
         DataTable apptDt = new DataTable();
         DateTime todayDate;
+
         
 
         public MainForm()
@@ -40,7 +42,7 @@ namespace ScheduleProgram
         private void addCustBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AddCustForm newCust = new AddCustForm();
+            AddEditCustForm newCust = new AddEditCustForm();
             newCust.Show();
         }
 
@@ -51,6 +53,7 @@ namespace ScheduleProgram
 
         private void addApptBtn_Click(object sender, EventArgs e)
         {
+            Universals.CustomerID = 0;
             this.Hide();
             AddEditApptForm newAppt = new AddEditApptForm();
             newAppt.Show();
@@ -73,11 +76,27 @@ namespace ScheduleProgram
 
         private void updateCustBtn_Click(object sender, EventArgs e)
         {
-            SetCustSelectedIndex();
+
+            
             if (Universals.CurrentCustIndex >= 0)
             {
+
+                using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+                {
+                    connect.Open();
+                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM customer;", connect);
+                    MySqlDataReader customerid = cmd.ExecuteReader();
+                    DataTable dt = new DataTable();
+                    dt.Load(customerid);
+                    if (dt.Rows.Count > 0)
+                    {
+                        int custId = (int)dt.Rows[Universals.CurrentCustIndex]["customerId"];
+                        Universals.CustomerID = custId;
+                    }
+                    connect.Close();
+                }
                 this.Hide();
-                ModifyCustForm editCust = new ModifyCustForm();
+                AddEditCustForm editCust = new AddEditCustForm();
                 editCust.Show();
             }
             else
@@ -85,38 +104,22 @@ namespace ScheduleProgram
                 MessageBox.Show("Please select a customer to update.");
             }
         }
-
         private void udpateApptBtn_Click(object sender, EventArgs e)
         {
+
+            
             this.Hide();
             AddEditApptForm editAppt = new AddEditApptForm();
             editAppt.Show();
         }
 
-        private void SetCustSelectedIndex ()
+        private void custDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (custDgv.SelectedRows.Count !=0)
-            {
-                DataGridViewRow row = custDgv.SelectedRows[0];
-                Universals.CurrentCustIndex = row.Index;
-            }
-            else
-            {
-                Universals.CurrentCustIndex = -1;
-            }
+            Universals.CurrentCustIndex = e.RowIndex;
+            
+
         }
 
-        private void SetApptSelectedIndex ()
-        {
-            if (apptDgv.SelectedRows.Count !=0)
-            {
-                DataGridViewRow row = apptDgv.SelectedRows[0];
-                Universals.CurrentApptIndex = row.Index;
-            }
-            else
-            {
-                Universals.CurrentApptIndex = -1;
-            }
-        }
+     
     }
 }
