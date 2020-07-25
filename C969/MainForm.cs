@@ -21,6 +21,8 @@ namespace ScheduleProgram
         DataTable custDt = new DataTable();
         DataTable apptDt = new DataTable();
         DateTime todayDate;
+        int addressId;
+        int customerId;
 
         
 
@@ -32,10 +34,14 @@ namespace ScheduleProgram
             Universals.CurrentCustIndex = -1;
             Customer.populateCustData(Customer.findAllCustQuery, custDt);
             custDgv.DataSource = custDt;
-            custDgv.Columns["customerID"].Visible = false;
+            custDgv.RowHeadersVisible = false;
+            custDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            custDgv.DefaultCellStyle.SelectionForeColor = custDgv.DefaultCellStyle.ForeColor;
             Universals.CurrentApptIndex = -1;
             Appointment.populateApptData(Appointment.apptQuery, apptDt);
             apptDgv.DataSource = apptDt;
+            apptDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            apptDgv.DefaultCellStyle.SelectionForeColor = apptDgv.DefaultCellStyle.ForeColor;
             
         }
 
@@ -76,11 +82,8 @@ namespace ScheduleProgram
 
         private void updateCustBtn_Click(object sender, EventArgs e)
         {
-
-            
             if (Universals.CurrentCustIndex >= 0)
             {
-
                 using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
                 {
                     connect.Open();
@@ -105,9 +108,7 @@ namespace ScheduleProgram
             }
         }
         private void udpateApptBtn_Click(object sender, EventArgs e)
-        {
-
-            
+        {      
             this.Hide();
             AddEditApptForm editAppt = new AddEditApptForm();
             editAppt.Show();
@@ -120,6 +121,55 @@ namespace ScheduleProgram
 
         }
 
-     
+        private void deleteCustBtn_Click(object sender, EventArgs e)
+        {
+            if (Universals.CurrentCustIndex >= 0)
+            {
+                using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+                {
+                    string getCustID = "SELECT * FROM customer WHERE customerId = '" + customerId + "';";
+                    string getAddressID = "SELECT addressId from customer where customerId = '" + customerId + "';";
+
+
+                    connect.Open();
+                    MySqlCommand getCID = new MySqlCommand(getCustID, connect);
+                    var custIdResult = getCID.ExecuteScalar();
+                    if (custIdResult != null)
+                    {
+                        customerId = Convert.ToInt32(custIdResult);
+                        Universals.CustomerID = customerId;
+                    }
+
+                    MySqlCommand getAId = new MySqlCommand(getAddressID, connect);
+                    var addressIdResult = getAId.ExecuteScalar();
+                    if (addressIdResult != null)
+                    {
+                        addressId = Convert.ToInt32(addressIdResult);
+                        Universals.AddressID = addressId;
+                    }
+
+                    string deleteCustomerAndAddress = "DELETE customer FROM customer WHERE customerId = '" + Universals.CustomerID + "';" +
+                    "DELETE address FROM address WHERE addressId = '" + Universals.AddressID + "';";
+
+                    MySqlCommand deleteCust = new MySqlCommand(deleteCustomerAndAddress, connect);
+                    deleteCust.ExecuteScalar();
+                    connect.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer to delete.");
+            }
+        }
+
+        private void custDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Universals.CurrentCustIndex = e.RowIndex;
+        }
+
+        private void apptDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -53,12 +53,6 @@
     <Compile Include="AddEditApptForm.Designer.cs">
       <DependentUpon>AddEditApptForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModifyCustForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ModifyCustForm.Designer.cs">
-      <DependentUpon>ModifyCustForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Universal\Appointment.cs" />
     <Compile Include="Universal\Customer.cs" />
     <Compile Include="AddEditCustForm.cs">
@@ -90,9 +84,6 @@
     <Compile Include="Universal\Universals.cs" />
     <EmbeddedResource Include="AddEditApptForm.resx">
       <DependentUpon>AddEditApptForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ModifyCustForm.resx">
-      <DependentUpon>ModifyCustForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditCustForm.resx">
       <DependentUpon>AddEditCustForm.cs</DependentUpon>

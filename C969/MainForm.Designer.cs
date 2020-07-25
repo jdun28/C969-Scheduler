@@ -41,12 +41,16 @@
             this.monthRb = new System.Windows.Forms.RadioButton();
             this.exitBtn = new System.Windows.Forms.Button();
             this.dayRb = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.custDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.apptDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // custDgv
             // 
+            this.custDgv.AllowUserToAddRows = false;
+            this.custDgv.AllowUserToDeleteRows = false;
             this.custDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.custDgv.Location = new System.Drawing.Point(432, 58);
             this.custDgv.Margin = new System.Windows.Forms.Padding(2);
@@ -59,10 +63,12 @@
             this.custDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.custDgv.Size = new System.Drawing.Size(600, 177);
             this.custDgv.TabIndex = 0;
-            this.custDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custDgv_CellContentClick);
+            this.custDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custDgv_CellClick);
             // 
             // apptDgv
             // 
+            this.apptDgv.AllowUserToAddRows = false;
+            this.apptDgv.AllowUserToDeleteRows = false;
             this.apptDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.apptDgv.Location = new System.Drawing.Point(432, 319);
             this.apptDgv.Margin = new System.Windows.Forms.Padding(2);
@@ -74,6 +80,7 @@
             this.apptDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.apptDgv.Size = new System.Drawing.Size(600, 177);
             this.apptDgv.TabIndex = 1;
+            this.apptDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.apptDgv_CellClick);
             // 
             // updateCustBtn
             // 
@@ -109,6 +116,7 @@
             this.deleteCustBtn.TabIndex = 4;
             this.deleteCustBtn.Text = "Delete";
             this.deleteCustBtn.UseVisualStyleBackColor = true;
+            this.deleteCustBtn.Click += new System.EventHandler(this.deleteCustBtn_Click);
             // 
             // udpateApptBtn
             // 
@@ -207,11 +215,33 @@
             this.dayRb.UseVisualStyleBackColor = true;
             this.dayRb.CheckedChanged += new System.EventHandler(this.dayRb_CheckedChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(428, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 24);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Customers";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(428, 274);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 24);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Appointments";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1217, 901);
+            this.ClientSize = new System.Drawing.Size(1217, 574);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dayRb);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.monthRb);
@@ -250,5 +280,7 @@
         private System.Windows.Forms.RadioButton monthRb;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.RadioButton dayRb;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

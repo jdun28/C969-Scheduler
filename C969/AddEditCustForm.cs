@@ -74,14 +74,16 @@ namespace ScheduleProgram
 
         private void saveCustBtn_Click(object sender, EventArgs e)
         {
-            if (Universals.CustomerID == 0)
-            {
-                InsertCustomerData();
-            }
+
             if (Universals.CustomerID > 0)
             {
                 UpdateCustomerData();
             }
+            else
+            {
+                InsertCustomerData();
+            }
+
         }
         private void nameTxt_TextChanged(object sender, EventArgs e)
         {
@@ -125,49 +127,55 @@ namespace ScheduleProgram
                     con.Open();
 
                     //finding name of city from drop down
-                    string getCity = cityCB.GetItemText(cityCB.SelectedIndex);
-
+                    string getCity = cityCB.GetItemText(cityCB.Text);
+                    
                     //selecting city id based off of city name
                     string sql = "SELECT cityId from city where city = '" + getCity + "';";
 
                     MySqlCommand city = new MySqlCommand(sql, con);
-                    var cityResult = city.ExecuteScalar();
-                    if (cityResult != null)
-                    {
-                        int cID = Convert.ToInt32(cityResult);
-                    }
-
+                    MySqlDataAdapter cityAdapter = new MySqlDataAdapter(city);
+                    DataTable cityResult = new DataTable();
+                    cityAdapter.Fill(cityResult);
+                    //if (cityResult.Rows.Count > 0)
+                    
+                    int cID = Convert.ToInt32(cityResult.Rows[0][0]);
+                    
                     //query to enter address data in address table
                     string insertAddressData =
-                        "INSERT INTO address (address, postalCode, phone, cityId, createDate, createdBy)" +
-                        "VALUES ('" + addressTxt.Text + "', '" + zipTxt.Text + "', '" + cID + "', '" +
-                        TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "');";
+                        "INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy)" +
+                        "VALUES ('" + addressTxt.Text + "', ' ', '" + cID + "', '" + zipTxt.Text + "', '"  + phoneTxt.Text + "', '"
+                         + TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "', '" + Universals.CurrentUser + "');";
 
                     //query to get address ID from address table
                     string getAddress = "SELECT addressId FROM address WHERE address = '" + addressTxt.Text + "';";
 
                     MySqlCommand addressInsert = new MySqlCommand(insertAddressData, con);
+                    addressInsert.ExecuteNonQuery();
                     MySqlCommand address = new MySqlCommand(getAddress, con);
-                    var addressResult = address.ExecuteScalar();
-                    if (addressResult != null)
-                    {
-                        int aID = Convert.ToInt32(addressResult);
-                    }
+                    MySqlDataAdapter addressAdapter = new MySqlDataAdapter(address);
+                    DataTable addressResult = new DataTable();
+                    addressAdapter.Fill(addressResult);
+                    int aID = Convert.ToInt32(addressResult.Rows[0][0]);
+                    
                     //query to insert customer data into customer table
                     string insertCustData =
-                        "INSERT INTO customer (customerName, addressId, active, createDate, createdBy)" +
-                        "VALUES ('" + nameTxt.Text + "' ,'" + aID + "'), 1 ,'" +
-                        TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "');";
+                        "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdateBy)" +
+                        "VALUES ('" + nameTxt.Text + "', '" + aID + "', 1 ,'" +
+                        TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "', '" + Universals.CurrentUser + "');";
 
                     MySqlCommand insertCustomer = new MySqlCommand(insertCustData, con);
-                    var customerResult = insertCustomer.ExecuteScalar();
+                    insertCustomer.ExecuteNonQuery();
                     con.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorLbl.Text = "An error has occurred. Please try again.";
             }
+
+            this.Hide();
+            MainForm dash = new MainForm();
+            dash.Show();
 
         }
 
@@ -177,35 +185,66 @@ namespace ScheduleProgram
             {
                 using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
                 {
-                    //string to get city from dropdown
-                    string updateCity = cityCB.GetItemText(cityCB.SelectedIndex);
-
-                    string citySql = "SELECT cityId FROM city WHERE city ='" + updateCity + "';";
-                    string customerID = "SELECT customerId FROM customer WHERE customerName = '" + nameTxt.Text + "';";
-                    string addressID = "SELECT addressId FROM customer WHERE customerId = '" + customerID + "';";
-
-                    string customerUpdate =
-                        "UPDATE customer " +
-                        " SET customerName = '" + nameTxt.Text + "', " + "lastUpdate = '" + 
-                        TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "',  '" +
-                        "lastUpdateBy = '" + Universals.CurrentUser + "';" +
-                        "WHERE customerId = '" + customerID + "';" +
-                        "UPDATE address " +
-                        "SET address = '" + addressTxt.Text + "', '" + zipTxt.Text + "', '" + phoneTxt.Text + "', '" + citySql + "'" +
-                        "lastUpdate = '" +
-                        TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "',  '" +
-                        "lastUpdateBy = '" + Universals.CurrentUser + "';" +
-                        "WHERE addressId = '" + addressID + "';";
                     connect.Open();
+                    //string to get city from dropdown
+                    string updateCity = cityCB.GetItemText(cityCB.SelectedItem);
+                    string citySql = "SELECT cityId FROM city WHERE city ='" + updateCity + "';";
+
+                    MySqlCommand getCity = new MySqlCommand(citySql, connect);
+                    MySqlDataAdapter city = new MySqlDataAdapter(getCity);
+                    DataTable cityCombo = new DataTable();
+                    city.Fill(cityCombo);
+                    if (cityCombo.Rows.Count >0)
+                    {
+                        int id = (int)cityCombo.Rows[0][0];
+                        Universals.CityID = id;
+                    }
+
+                    string addressID = "SELECT addressId FROM customer WHERE customerId = '" + Universals.CustomerID + "';";
+
+                    MySqlCommand getAddress = new MySqlCommand(addressID, connect);
+                    MySqlDataAdapter address = new MySqlDataAdapter(getAddress);
+                    DataTable addressDt = new DataTable();
+                    address.Fill(addressDt);
+                    if (addressDt.Rows.Count > 0)
+                    {
+                        int addressid = (int)addressDt.Rows[0][0];
+                        Universals.AddressID = addressid;
+                    }
+
+
+                    string addressUpdate =
+                        "UPDATE address SET address = '" + addressTxt.Text + "', postalCode ='"  + zipTxt.Text + "', phone ='" + phoneTxt.Text + "', cityId ='" + Universals.CityID + "', " +
+                        "lastUpdate = '" +
+                        TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "',  " +
+                        "lastUpdateBy = '" + Universals.CurrentUser + "' " +
+                        "WHERE addressId = '" + Universals.AddressID + "';";
+
+                    string customerUpdate = "UPDATE customer SET customerName = '" + nameTxt.Text + "', " + "lastUpdate = '" +
+                        TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "',  " +
+                        "lastUpdateBy = '" + Universals.CurrentUser + "' " +
+                        "WHERE customerId = '" + Universals.CustomerID + "';";
+
+                    MySqlCommand updateAddress = new MySqlCommand(addressUpdate, connect);
+                    updateAddress.ExecuteNonQuery();
+
                     MySqlCommand updateCustomer = new MySqlCommand(customerUpdate, connect);
-                    var updatedCustomer = updateCustomer.ExecuteScalar();
+                    updateCustomer.ExecuteNonQuery();
                     connect.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                errorLbl.Text = "Unable to update customer. Please try again.";
+                errorLbl.Text = ex.ToString();
             }
+            this.Hide();
+            MainForm dash = new MainForm();
+            dash.Show();
+        }
+
+        private void cityCB_DropDownClosed(object sender, EventArgs e)
+        {
+
         }
     }
 }

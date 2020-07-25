@@ -186,6 +186,7 @@
             this.cityCB.Name = "cityCB";
             this.cityCB.Size = new System.Drawing.Size(197, 24);
             this.cityCB.TabIndex = 27;
+            this.cityCB.DropDownClosed += new System.EventHandler(this.cityCB_DropDownClosed);
             // 
             // errorLbl
             // 
@@ -197,7 +198,7 @@
             this.errorLbl.Size = new System.Drawing.Size(0, 16);
             this.errorLbl.TabIndex = 28;
             // 
-            // AddCustForm
+            // AddEditCustForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -217,7 +218,7 @@
             this.Controls.Add(this.addressTxt);
             this.Controls.Add(this.nameTxt);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "AddCustForm";
+            this.Name = "AddEditCustForm";
             this.Text = "CustomerDetails";
             this.Load += new System.EventHandler(this.AddEditCustForm_Load);
             this.ResumeLayout(false);

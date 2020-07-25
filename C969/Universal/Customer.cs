@@ -19,7 +19,8 @@ namespace ScheduleProgram.Universal
             + "FROM customer "
             + "INNER JOIN address ON customer.addressId = address.addressId "
             + "INNER JOIN city ON address.cityId = city.cityId "
-            + "INNER JOIN country on city.countryId = country.countryId;";
+            + "INNER JOIN country on city.countryId = country.countryId "
+            + "ORDER BY customerId ASC;";
 
         public static void populateCustData(string c, DataTable dt)
         {
