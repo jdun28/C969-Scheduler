@@ -47,6 +47,11 @@
             this.dayRb = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.apptByMonBtn = new System.Windows.Forms.Button();
+            this.userSchedBtn = new System.Windows.Forms.Button();
+            this.apptByCustBtn = new System.Windows.Forms.Button();
+            this.reportsLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.custDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.apptDgv)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +71,7 @@
             this.custDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.custDgv.ColumnHeadersVisible = false;
             this.custDgv.EnableHeadersVisualStyles = false;
-            this.custDgv.Location = new System.Drawing.Point(864, 112);
+            this.custDgv.Location = new System.Drawing.Point(616, 112);
             this.custDgv.Margin = new System.Windows.Forms.Padding(4);
             this.custDgv.MultiSelect = false;
             this.custDgv.Name = "custDgv";
@@ -78,7 +83,7 @@
             this.custDgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.custDgv.RowTemplate.Height = 33;
             this.custDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.custDgv.Size = new System.Drawing.Size(1200, 340);
+            this.custDgv.Size = new System.Drawing.Size(1008, 340);
             this.custDgv.TabIndex = 0;
             this.custDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custDgv_CellClick);
             // 
@@ -97,7 +102,7 @@
             this.apptDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.apptDgv.ColumnHeadersVisible = false;
             this.apptDgv.EnableHeadersVisualStyles = false;
-            this.apptDgv.Location = new System.Drawing.Point(864, 613);
+            this.apptDgv.Location = new System.Drawing.Point(616, 613);
             this.apptDgv.Margin = new System.Windows.Forms.Padding(4);
             this.apptDgv.MultiSelect = false;
             this.apptDgv.Name = "apptDgv";
@@ -109,14 +114,14 @@
             this.apptDgv.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.apptDgv.RowTemplate.Height = 33;
             this.apptDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.apptDgv.Size = new System.Drawing.Size(1200, 340);
+            this.apptDgv.Size = new System.Drawing.Size(1008, 340);
             this.apptDgv.TabIndex = 1;
             this.apptDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.apptDgv_CellClick);
             // 
             // updateCustBtn
             // 
             this.updateCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateCustBtn.Location = new System.Drawing.Point(1888, 458);
+            this.updateCustBtn.Location = new System.Drawing.Point(1448, 460);
             this.updateCustBtn.Margin = new System.Windows.Forms.Padding(4);
             this.updateCustBtn.Name = "updateCustBtn";
             this.updateCustBtn.Size = new System.Drawing.Size(176, 56);
@@ -128,7 +133,7 @@
             // addCustBtn
             // 
             this.addCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addCustBtn.Location = new System.Drawing.Point(1700, 458);
+            this.addCustBtn.Location = new System.Drawing.Point(1260, 460);
             this.addCustBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addCustBtn.Name = "addCustBtn";
             this.addCustBtn.Size = new System.Drawing.Size(176, 56);
@@ -140,7 +145,7 @@
             // deleteCustBtn
             // 
             this.deleteCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteCustBtn.Location = new System.Drawing.Point(1514, 458);
+            this.deleteCustBtn.Location = new System.Drawing.Point(1074, 460);
             this.deleteCustBtn.Margin = new System.Windows.Forms.Padding(4);
             this.deleteCustBtn.Name = "deleteCustBtn";
             this.deleteCustBtn.Size = new System.Drawing.Size(176, 56);
@@ -152,7 +157,7 @@
             // udpateApptBtn
             // 
             this.udpateApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.udpateApptBtn.Location = new System.Drawing.Point(1888, 960);
+            this.udpateApptBtn.Location = new System.Drawing.Point(1448, 961);
             this.udpateApptBtn.Margin = new System.Windows.Forms.Padding(4);
             this.udpateApptBtn.Name = "udpateApptBtn";
             this.udpateApptBtn.Size = new System.Drawing.Size(176, 56);
@@ -164,7 +169,7 @@
             // addApptBtn
             // 
             this.addApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addApptBtn.Location = new System.Drawing.Point(1700, 960);
+            this.addApptBtn.Location = new System.Drawing.Point(1260, 961);
             this.addApptBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addApptBtn.Name = "addApptBtn";
             this.addApptBtn.Size = new System.Drawing.Size(176, 56);
@@ -176,7 +181,7 @@
             // deleteApptBtn
             // 
             this.deleteApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteApptBtn.Location = new System.Drawing.Point(1514, 960);
+            this.deleteApptBtn.Location = new System.Drawing.Point(1074, 961);
             this.deleteApptBtn.Margin = new System.Windows.Forms.Padding(4);
             this.deleteApptBtn.Name = "deleteApptBtn";
             this.deleteApptBtn.Size = new System.Drawing.Size(176, 56);
@@ -226,7 +231,7 @@
             this.exitBtn.AllowDrop = true;
             this.exitBtn.BackColor = System.Drawing.Color.Red;
             this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitBtn.Location = new System.Drawing.Point(64, 1023);
+            this.exitBtn.Location = new System.Drawing.Point(64, 961);
             this.exitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(176, 56);
@@ -253,7 +258,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(856, 17);
+            this.label1.Location = new System.Drawing.Point(608, 64);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(214, 44);
@@ -264,18 +269,74 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(856, 527);
+            this.label2.Location = new System.Drawing.Point(608, 565);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(266, 44);
             this.label2.TabIndex = 14;
             this.label2.Text = "Appointments";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(57, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(350, 37);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "View Appointment By:";
+            // 
+            // apptByMonBtn
+            // 
+            this.apptByMonBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apptByMonBtn.Location = new System.Drawing.Point(64, 613);
+            this.apptByMonBtn.Name = "apptByMonBtn";
+            this.apptByMonBtn.Size = new System.Drawing.Size(404, 80);
+            this.apptByMonBtn.TabIndex = 16;
+            this.apptByMonBtn.Text = "Appointments \r\nBy Month";
+            this.apptByMonBtn.UseVisualStyleBackColor = true;
+            this.apptByMonBtn.Click += new System.EventHandler(this.apptByMonBtn_Click);
+            // 
+            // userSchedBtn
+            // 
+            this.userSchedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userSchedBtn.Location = new System.Drawing.Point(64, 713);
+            this.userSchedBtn.Name = "userSchedBtn";
+            this.userSchedBtn.Size = new System.Drawing.Size(404, 80);
+            this.userSchedBtn.TabIndex = 17;
+            this.userSchedBtn.Text = "User Schedule";
+            this.userSchedBtn.UseVisualStyleBackColor = true;
+            // 
+            // apptByCustBtn
+            // 
+            this.apptByCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apptByCustBtn.Location = new System.Drawing.Point(64, 817);
+            this.apptByCustBtn.Name = "apptByCustBtn";
+            this.apptByCustBtn.Size = new System.Drawing.Size(404, 80);
+            this.apptByCustBtn.TabIndex = 18;
+            this.apptByCustBtn.Text = "Appointments \r\nBy Customer";
+            this.apptByCustBtn.UseVisualStyleBackColor = true;
+            // 
+            // reportsLbl
+            // 
+            this.reportsLbl.AutoSize = true;
+            this.reportsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportsLbl.Location = new System.Drawing.Point(57, 572);
+            this.reportsLbl.Name = "reportsLbl";
+            this.reportsLbl.Size = new System.Drawing.Size(155, 37);
+            this.reportsLbl.TabIndex = 19;
+            this.reportsLbl.Text = "Reports: ";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2434, 1104);
+            this.ClientSize = new System.Drawing.Size(1694, 1104);
+            this.Controls.Add(this.reportsLbl);
+            this.Controls.Add(this.apptByCustBtn);
+            this.Controls.Add(this.userSchedBtn);
+            this.Controls.Add(this.apptByMonBtn);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dayRb);
@@ -318,5 +379,10 @@
         private System.Windows.Forms.RadioButton dayRb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button apptByMonBtn;
+        private System.Windows.Forms.Button userSchedBtn;
+        private System.Windows.Forms.Button apptByCustBtn;
+        private System.Windows.Forms.Label reportsLbl;
     }
 }

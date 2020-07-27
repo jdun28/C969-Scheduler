@@ -58,6 +58,8 @@ namespace ScheduleProgram
 
             WriteLogin();
             CheckAppt();
+            Universals.GetCurrentUserName();
+            Universals.GetCurrentUserID();
             
         }
 

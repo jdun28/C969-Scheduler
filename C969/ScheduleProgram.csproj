@@ -53,6 +53,24 @@
     <Compile Include="AddEditApptForm.Designer.cs">
       <DependentUpon>AddEditApptForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApptByCust.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApptByCust.Designer.cs">
+      <DependentUpon>ApptByCust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserSchedule.Designer.cs">
+      <DependentUpon>UserSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApptByMonth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApptByMonth.Designer.cs">
+      <DependentUpon>ApptByMonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Universal\Appointment.cs" />
     <Compile Include="Universal\Customer.cs" />
     <Compile Include="AddEditCustForm.cs">
@@ -87,6 +105,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditCustForm.resx">
       <DependentUpon>AddEditCustForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApptByCust.resx">
+      <DependentUpon>ApptByCust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserSchedule.resx">
+      <DependentUpon>UserSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApptByMonth.resx">
+      <DependentUpon>ApptByMonth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Spanish.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -389,5 +389,12 @@ namespace ScheduleProgram
                 }
             }
         }
+
+        private void apptByMonBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ApptByMonth monReport = new ApptByMonth();
+            monReport.Show();
+        }
     }
 }
