@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Windows.Markup;
+using System.Text.RegularExpressions;
 
 namespace ScheduleProgram
 {
@@ -101,16 +102,20 @@ namespace ScheduleProgram
 
         private void zipTxt_TextChanged(object sender, EventArgs e)
         {
+            bool zipFormat = Universals.CheckZipFormat(zipTxt.Text.ToString());
             bool validZip = Universals.IsNotNullOrEmpty(zipTxt.Text);
             Universals.ValidateField(zipTxt, validZip);
+            Universals.ValidateField(zipTxt, zipFormat);
             saveCustBtn.Enabled = SaveAllowed();
         }
 
         private void phoneTxt_TextChanged(object sender, EventArgs e)
         {
+            bool phoneFormat = Universals.CheckPhoneFormat(phoneTxt.Text.ToString());
             bool validPhone = Universals.IsNotNullOrEmpty(phoneTxt.Text);
             Universals.ValidateField(phoneTxt, validPhone);
-            saveCustBtn.Enabled = SaveAllowed();
+            Universals.ValidateField(phoneTxt, phoneFormat);
+            saveCustBtn.Enabled = SaveAllowed();          
         }
 
         private void AddEditCustForm_Load(object sender, EventArgs e)
@@ -136,14 +141,15 @@ namespace ScheduleProgram
                     MySqlDataAdapter cityAdapter = new MySqlDataAdapter(city);
                     DataTable cityResult = new DataTable();
                     cityAdapter.Fill(cityResult);
-                    //if (cityResult.Rows.Count > 0)
-                    
-                    int cID = Convert.ToInt32(cityResult.Rows[0][0]);
-                    
+                    if (cityResult.Rows.Count > 0)
+                    {
+                        int cID = Convert.ToInt32(cityResult.Rows[0][0]);
+                        Universals.CityID = cID;
+                    }
                     //query to enter address data in address table
                     string insertAddressData =
                         "INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy)" +
-                        "VALUES ('" + addressTxt.Text + "', ' ', '" + cID + "', '" + zipTxt.Text + "', '"  + phoneTxt.Text + "', '"
+                        "VALUES ('" + addressTxt.Text + "', ' ', '" + Universals.CityID + "', '" + zipTxt.Text + "', '"  + phoneTxt.Text + "', '"
                          + TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "', '" + Universals.CurrentUser + "');";
 
                     //query to get address ID from address table
@@ -155,28 +161,32 @@ namespace ScheduleProgram
                     MySqlDataAdapter addressAdapter = new MySqlDataAdapter(address);
                     DataTable addressResult = new DataTable();
                     addressAdapter.Fill(addressResult);
-                    int aID = Convert.ToInt32(addressResult.Rows[0][0]);
+
+                    if (addressResult.Rows.Count > 0)
+                    {
+                        int aID = Convert.ToInt32(addressResult.Rows[0][0]);
+                        Universals.AddressID = aID;
+                    }
                     
                     //query to insert customer data into customer table
                     string insertCustData =
                         "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdateBy)" +
-                        "VALUES ('" + nameTxt.Text + "', '" + aID + "', 1 ,'" +
+                        "VALUES ('" + nameTxt.Text + "', '" + Universals.AddressID + "', 1 ,'" +
                         TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "', '" + Universals.CurrentUser + "');";
 
                     MySqlCommand insertCustomer = new MySqlCommand(insertCustData, con);
                     insertCustomer.ExecuteNonQuery();
                     con.Close();
+
+                    this.Hide();
+                    MainForm dash = new MainForm();
+                    dash.Show();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 errorLbl.Text = "An error has occurred. Please try again.";
             }
-
-            this.Hide();
-            MainForm dash = new MainForm();
-            dash.Show();
-
         }
 
         public void UpdateCustomerData()
@@ -211,8 +221,6 @@ namespace ScheduleProgram
                         int addressid = (int)addressDt.Rows[0][0];
                         Universals.AddressID = addressid;
                     }
-
-
                     string addressUpdate =
                         "UPDATE address SET address = '" + addressTxt.Text + "', postalCode ='"  + zipTxt.Text + "', phone ='" + phoneTxt.Text + "', cityId ='" + Universals.CityID + "', " +
                         "lastUpdate = '" +
@@ -231,20 +239,18 @@ namespace ScheduleProgram
                     MySqlCommand updateCustomer = new MySqlCommand(customerUpdate, connect);
                     updateCustomer.ExecuteNonQuery();
                     connect.Close();
+
+                    this.Hide();
+                    MainForm dash = new MainForm();
+                    dash.Show();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                errorLbl.Text = ex.ToString();
+                errorLbl.Text = "An error has occurred. Please try again.";
             }
-            this.Hide();
-            MainForm dash = new MainForm();
-            dash.Show();
         }
 
-        private void cityCB_DropDownClosed(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

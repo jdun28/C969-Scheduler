@@ -10,38 +10,11 @@ namespace ScheduleProgram.Universal
 {
     public class Appointment
     {
-        public string aId { get; set; }
-        public string cId { get; set; }
-        public string uId { get; set; }
-        public string type { get; set; }
-        public DateTime start { get; set; }
-        public DateTime end { get; set; }
-        public DateTime createdDate { get; set; }
-        public string createdBy { get; set; }
-        public DateTime lastUpdate { get; set; }
-        public string lastUpdateBy { get; set; }
-
-        public Appointment(string appointmentId, string customerId, string userId, string aType, DateTime startTime, 
-            DateTime endTime, DateTime created, string whoCreate, DateTime lastUpdated, string whoLastUpdate)
-        {
-            aId = appointmentId;
-            cId = customerId;
-            uId = userId;
-            type = aType;
-            start = startTime;
-            end = endTime;
-            createdDate = created;
-            createdBy = whoCreate;
-            lastUpdate = lastUpdated;
-            lastUpdateBy = whoLastUpdate;
-        }
-
         //query to create appointment view for apptDgv
         public static string apptQuery =
             "SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.type, appointment.start, appointment.end "
             + " FROM appointment "
             + " INNER JOIN customer ON appointment.customerId = customer.customerId;";
-
         public static void populateApptData(string a, DataTable dt)
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
@@ -50,6 +23,16 @@ namespace ScheduleProgram.Universal
                 connect.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dt.Rows[i]["start"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["start"], TimeZoneInfo.Local).ToString();
+                        dt.Rows[i]["end"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["end"], TimeZoneInfo.Local).ToString();
+
+                    }
+                }
+
                 connect.Close();
             }
         }

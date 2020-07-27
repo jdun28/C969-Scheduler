@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.custDgv = new System.Windows.Forms.DataGridView();
             this.apptDgv = new System.Windows.Forms.DataGridView();
             this.updateCustBtn = new System.Windows.Forms.Button();
@@ -51,17 +55,30 @@
             // 
             this.custDgv.AllowUserToAddRows = false;
             this.custDgv.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.custDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.custDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.custDgv.Location = new System.Drawing.Point(432, 58);
-            this.custDgv.Margin = new System.Windows.Forms.Padding(2);
+            this.custDgv.ColumnHeadersVisible = false;
+            this.custDgv.EnableHeadersVisualStyles = false;
+            this.custDgv.Location = new System.Drawing.Point(864, 112);
+            this.custDgv.Margin = new System.Windows.Forms.Padding(4);
             this.custDgv.MultiSelect = false;
             this.custDgv.Name = "custDgv";
             this.custDgv.ReadOnly = true;
             this.custDgv.RowHeadersVisible = false;
             this.custDgv.RowHeadersWidth = 82;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightYellow;
+            this.custDgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.custDgv.RowTemplate.Height = 33;
             this.custDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.custDgv.Size = new System.Drawing.Size(600, 177);
+            this.custDgv.Size = new System.Drawing.Size(1200, 340);
             this.custDgv.TabIndex = 0;
             this.custDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custDgv_CellClick);
             // 
@@ -69,26 +86,40 @@
             // 
             this.apptDgv.AllowUserToAddRows = false;
             this.apptDgv.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.apptDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.apptDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.apptDgv.Location = new System.Drawing.Point(432, 319);
-            this.apptDgv.Margin = new System.Windows.Forms.Padding(2);
+            this.apptDgv.ColumnHeadersVisible = false;
+            this.apptDgv.EnableHeadersVisualStyles = false;
+            this.apptDgv.Location = new System.Drawing.Point(864, 613);
+            this.apptDgv.Margin = new System.Windows.Forms.Padding(4);
+            this.apptDgv.MultiSelect = false;
             this.apptDgv.Name = "apptDgv";
             this.apptDgv.ReadOnly = true;
             this.apptDgv.RowHeadersVisible = false;
             this.apptDgv.RowHeadersWidth = 82;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightYellow;
+            this.apptDgv.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.apptDgv.RowTemplate.Height = 33;
             this.apptDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.apptDgv.Size = new System.Drawing.Size(600, 177);
+            this.apptDgv.Size = new System.Drawing.Size(1200, 340);
             this.apptDgv.TabIndex = 1;
             this.apptDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.apptDgv_CellClick);
             // 
             // updateCustBtn
             // 
             this.updateCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateCustBtn.Location = new System.Drawing.Point(944, 238);
-            this.updateCustBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.updateCustBtn.Location = new System.Drawing.Point(1888, 458);
+            this.updateCustBtn.Margin = new System.Windows.Forms.Padding(4);
             this.updateCustBtn.Name = "updateCustBtn";
-            this.updateCustBtn.Size = new System.Drawing.Size(88, 29);
+            this.updateCustBtn.Size = new System.Drawing.Size(176, 56);
             this.updateCustBtn.TabIndex = 2;
             this.updateCustBtn.Text = "Update";
             this.updateCustBtn.UseVisualStyleBackColor = true;
@@ -97,10 +128,10 @@
             // addCustBtn
             // 
             this.addCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addCustBtn.Location = new System.Drawing.Point(850, 238);
-            this.addCustBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.addCustBtn.Location = new System.Drawing.Point(1700, 458);
+            this.addCustBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addCustBtn.Name = "addCustBtn";
-            this.addCustBtn.Size = new System.Drawing.Size(88, 29);
+            this.addCustBtn.Size = new System.Drawing.Size(176, 56);
             this.addCustBtn.TabIndex = 3;
             this.addCustBtn.Text = "Add";
             this.addCustBtn.UseVisualStyleBackColor = true;
@@ -109,10 +140,10 @@
             // deleteCustBtn
             // 
             this.deleteCustBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteCustBtn.Location = new System.Drawing.Point(757, 238);
-            this.deleteCustBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteCustBtn.Location = new System.Drawing.Point(1514, 458);
+            this.deleteCustBtn.Margin = new System.Windows.Forms.Padding(4);
             this.deleteCustBtn.Name = "deleteCustBtn";
-            this.deleteCustBtn.Size = new System.Drawing.Size(88, 29);
+            this.deleteCustBtn.Size = new System.Drawing.Size(176, 56);
             this.deleteCustBtn.TabIndex = 4;
             this.deleteCustBtn.Text = "Delete";
             this.deleteCustBtn.UseVisualStyleBackColor = true;
@@ -121,10 +152,10 @@
             // udpateApptBtn
             // 
             this.udpateApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.udpateApptBtn.Location = new System.Drawing.Point(944, 499);
-            this.udpateApptBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.udpateApptBtn.Location = new System.Drawing.Point(1888, 960);
+            this.udpateApptBtn.Margin = new System.Windows.Forms.Padding(4);
             this.udpateApptBtn.Name = "udpateApptBtn";
-            this.udpateApptBtn.Size = new System.Drawing.Size(88, 29);
+            this.udpateApptBtn.Size = new System.Drawing.Size(176, 56);
             this.udpateApptBtn.TabIndex = 5;
             this.udpateApptBtn.Text = "Update";
             this.udpateApptBtn.UseVisualStyleBackColor = true;
@@ -133,10 +164,10 @@
             // addApptBtn
             // 
             this.addApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addApptBtn.Location = new System.Drawing.Point(850, 499);
-            this.addApptBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.addApptBtn.Location = new System.Drawing.Point(1700, 960);
+            this.addApptBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addApptBtn.Name = "addApptBtn";
-            this.addApptBtn.Size = new System.Drawing.Size(88, 29);
+            this.addApptBtn.Size = new System.Drawing.Size(176, 56);
             this.addApptBtn.TabIndex = 6;
             this.addApptBtn.Text = "Add";
             this.addApptBtn.UseVisualStyleBackColor = true;
@@ -145,29 +176,31 @@
             // deleteApptBtn
             // 
             this.deleteApptBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteApptBtn.Location = new System.Drawing.Point(757, 499);
-            this.deleteApptBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteApptBtn.Location = new System.Drawing.Point(1514, 960);
+            this.deleteApptBtn.Margin = new System.Windows.Forms.Padding(4);
             this.deleteApptBtn.Name = "deleteApptBtn";
-            this.deleteApptBtn.Size = new System.Drawing.Size(88, 29);
+            this.deleteApptBtn.Size = new System.Drawing.Size(176, 56);
             this.deleteApptBtn.TabIndex = 7;
             this.deleteApptBtn.Text = "Delete";
             this.deleteApptBtn.UseVisualStyleBackColor = true;
+            this.deleteApptBtn.Click += new System.EventHandler(this.deleteApptBtn_Click);
             // 
             // myCal
             // 
-            this.myCal.Location = new System.Drawing.Point(32, 58);
-            this.myCal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.myCal.Location = new System.Drawing.Point(64, 112);
+            this.myCal.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.myCal.Name = "myCal";
             this.myCal.TabIndex = 8;
+            this.myCal.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.myCal_DateSelected);
             // 
             // weekRb
             // 
             this.weekRb.AutoSize = true;
             this.weekRb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.weekRb.Location = new System.Drawing.Point(88, 238);
-            this.weekRb.Margin = new System.Windows.Forms.Padding(2);
+            this.weekRb.Location = new System.Drawing.Point(176, 458);
+            this.weekRb.Margin = new System.Windows.Forms.Padding(4);
             this.weekRb.Name = "weekRb";
-            this.weekRb.Size = new System.Drawing.Size(62, 21);
+            this.weekRb.Size = new System.Drawing.Size(114, 35);
             this.weekRb.TabIndex = 9;
             this.weekRb.TabStop = true;
             this.weekRb.Text = "Week";
@@ -178,10 +211,10 @@
             // 
             this.monthRb.AutoSize = true;
             this.monthRb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monthRb.Location = new System.Drawing.Point(154, 238);
-            this.monthRb.Margin = new System.Windows.Forms.Padding(2);
+            this.monthRb.Location = new System.Drawing.Point(308, 458);
+            this.monthRb.Margin = new System.Windows.Forms.Padding(4);
             this.monthRb.Name = "monthRb";
-            this.monthRb.Size = new System.Drawing.Size(65, 21);
+            this.monthRb.Size = new System.Drawing.Size(120, 35);
             this.monthRb.TabIndex = 10;
             this.monthRb.TabStop = true;
             this.monthRb.Text = "Month";
@@ -193,10 +226,10 @@
             this.exitBtn.AllowDrop = true;
             this.exitBtn.BackColor = System.Drawing.Color.Red;
             this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitBtn.Location = new System.Drawing.Point(32, 532);
-            this.exitBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.exitBtn.Location = new System.Drawing.Point(64, 1023);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(88, 29);
+            this.exitBtn.Size = new System.Drawing.Size(176, 56);
             this.exitBtn.TabIndex = 11;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = false;
@@ -206,9 +239,10 @@
             // 
             this.dayRb.AutoSize = true;
             this.dayRb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F);
-            this.dayRb.Location = new System.Drawing.Point(32, 238);
+            this.dayRb.Location = new System.Drawing.Point(64, 458);
+            this.dayRb.Margin = new System.Windows.Forms.Padding(6);
             this.dayRb.Name = "dayRb";
-            this.dayRb.Size = new System.Drawing.Size(51, 21);
+            this.dayRb.Size = new System.Drawing.Size(94, 35);
             this.dayRb.TabIndex = 12;
             this.dayRb.TabStop = true;
             this.dayRb.Text = "Day";
@@ -219,9 +253,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(428, 9);
+            this.label1.Location = new System.Drawing.Point(856, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 24);
+            this.label1.Size = new System.Drawing.Size(214, 44);
             this.label1.TabIndex = 13;
             this.label1.Text = "Customers";
             // 
@@ -229,17 +264,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(428, 274);
+            this.label2.Location = new System.Drawing.Point(856, 527);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 24);
+            this.label2.Size = new System.Drawing.Size(266, 44);
             this.label2.TabIndex = 14;
             this.label2.Text = "Appointments";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1217, 574);
+            this.ClientSize = new System.Drawing.Size(2434, 1104);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dayRb);
@@ -255,7 +291,7 @@
             this.Controls.Add(this.updateCustBtn);
             this.Controls.Add(this.apptDgv);
             this.Controls.Add(this.custDgv);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.custDgv)).EndInit();

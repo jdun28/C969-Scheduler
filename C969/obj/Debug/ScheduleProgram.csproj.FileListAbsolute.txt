@@ -54,6 +54,6 @@ C:\Users\jendunlap\Source\Repos\Dunlap969\C969\bin\Debug\MySql.Data.xml
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.csproj.CopyComplete
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.exe
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.pdb
-C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.csprojAssemblyReference.cache
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.Localization.Spanish.resources
 C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.AddEditCustForm.resources
+C:\Users\jendunlap\Source\Repos\Dunlap969\C969\obj\Debug\ScheduleProgram.csprojAssemblyReference.cache
