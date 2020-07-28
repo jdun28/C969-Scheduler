@@ -174,7 +174,7 @@
             this.endTimePicker.Name = "endTimePicker";
             this.endTimePicker.Size = new System.Drawing.Size(386, 38);
             this.endTimePicker.TabIndex = 27;
-            this.endTimePicker.Value = new System.DateTime(2020, 7, 25, 0, 0, 0, 0);
+            this.endTimePicker.Value = new System.DateTime(2020, 7, 28, 0, 0, 0, 0);
             // 
             // errorLbl
             // 

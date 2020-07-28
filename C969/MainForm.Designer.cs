@@ -367,7 +367,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView custDgv;
-        private System.Windows.Forms.DataGridView apptDgv;
         private System.Windows.Forms.Button updateCustBtn;
         private System.Windows.Forms.Button addCustBtn;
         private System.Windows.Forms.Button deleteCustBtn;
@@ -386,5 +385,6 @@
         private System.Windows.Forms.Button userSchedBtn;
         private System.Windows.Forms.Button apptByCustBtn;
         private System.Windows.Forms.Label reportsLbl;
+        internal System.Windows.Forms.DataGridView apptDgv;
     }
 }

@@ -63,9 +63,7 @@ namespace ScheduleProgram
                     connect.Close();
                 }
             }
-            
         }
-        
         private void cancelCustBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -250,7 +248,5 @@ namespace ScheduleProgram
                 errorLbl.Text = "An error has occurred. Please try again.";
             }
         }
-
-        
     }
 }

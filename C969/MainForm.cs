@@ -18,9 +18,11 @@ namespace ScheduleProgram
 {
     public partial class MainForm : Form
     {
+        public delegate string GoodBye(string name);
         DataTable custDt = new DataTable();
         DataTable apptDt = new DataTable();
         DateTime selectedDate = new DateTime();
+        
 
 
         public MainForm()
@@ -38,7 +40,6 @@ namespace ScheduleProgram
             custDgv.DataSource = custDt;
             custDgv.Columns["country"].Visible = false;
             custDgv.Columns["customerId"].Visible = false;
-
             Universals.CurrentApptIndex = -1;
             Appointment.populateApptData(Appointment.apptQuery, apptDt);
             apptDgv.RowHeadersVisible = false;
@@ -59,12 +60,17 @@ namespace ScheduleProgram
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
+            //lambda to shorten syntex to let user know leaving program
+            GoodBye obj = (currentUserName) => { return "Have a nice day, " + currentUserName + " user."; };
+            string GoodBye = obj.Invoke(Universals.CurrentUser);
+            MessageBox.Show(GoodBye);
             Application.Exit();
         }
 
         private void addApptBtn_Click(object sender, EventArgs e)
         {
             Universals.CustomerID = 0;
+            Universals.AppointmentID = 0;
             this.Hide();
             AddEditApptForm newAppt = new AddEditApptForm();
             newAppt.Show();
@@ -184,9 +190,9 @@ namespace ScheduleProgram
                             {
                                 {
                                     completeDelete.ExecuteNonQuery();
-                                    this.Hide();
-                                    MainForm dash = new MainForm();
-                                    dash.Show();
+                                    DataTable customerDeleteCompleted = new DataTable();
+                                    Universals.GetData(Customer.findAllCustQuery, customerDeleteCompleted);
+                                    custDgv.DataSource = customerDeleteCompleted;
                                 }
                             }
                             catch
@@ -228,9 +234,9 @@ namespace ScheduleProgram
                         if (dialog == DialogResult.Yes)
                         {
                             delete.ExecuteNonQuery();
-                            this.Hide();
-                            MainForm dash = new MainForm();
-                            dash.Show();
+                            DataTable appointmentDeleted = new DataTable();
+                            Universals.GetData(Appointment.apptQuery, appointmentDeleted);
+                            apptDgv.DataSource = appointmentDeleted;
                         }
                     }
                     connect.Close();
@@ -341,9 +347,6 @@ namespace ScheduleProgram
                     TimeZoneInfo.ConvertTimeToUtc(monthStart).ToString("yyyy-MM-dd HH:mm:ss") +"' AND '" + TimeZoneInfo.ConvertTimeToUtc(monthEnd).ToString("yyyy-MM-dd HH:mm:ss") + "' ;";
 
             DataTable handleMon = new DataTable();
-            //Universals.GetData(monthAppts, handleMon);
-            //apptDgv.DataSource = handleMon;
-            //apptDgv.Refresh();
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
                 connect.Open();
@@ -396,14 +399,12 @@ namespace ScheduleProgram
             ApptByMonth monReport = new ApptByMonth();
             monReport.Show();
         }
-
         private void apptByCustBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
             ApptByCust custReport = new ApptByCust();
             custReport.Show();
         }
-
         private void userSchedBtn_Click(object sender, EventArgs e)
         {
             this.Hide();

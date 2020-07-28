@@ -20,7 +20,7 @@ namespace ScheduleProgram
 {
     public partial class SignInForm : Form
     {
-
+        public delegate string Hello(string uname);
            
         public SignInForm()
         {
@@ -39,20 +39,27 @@ namespace ScheduleProgram
 
                 if (loginDt.Rows.Count > 0)
                 {
+                    {
+                        if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
+                        {
+                            errorLbl.Text = "El nombre de usuario o la contraseña son incorrectos.";
+                        }
+                        else
+                        {
+                            errorLbl.Text = "The username or password are incorrect.";
+                        }
+                    }
+                }
+                else
+                {      
+                    //lambda to shorten syntax to let user know opening program
+                    Hello obj = (currentUserName) => { return "Welcome to the scheduler system, " + currentUserName + " user."; };
+                    string Hello = obj.Invoke(Universals.CurrentUser);
+                    MessageBox.Show(Hello);
+
                     this.Hide();
                     MainForm dash = new MainForm();
                     dash.Show();
-                }
-                else
-                {
-                    if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
-                    {
-                        errorLbl.Text = "El nombre de usuario o la contraseña son incorrectos.";
-                    }
-                    else
-                    {
-                        errorLbl.Text = "The username or password are incorrect.";
-                    }
                 }
             }
 

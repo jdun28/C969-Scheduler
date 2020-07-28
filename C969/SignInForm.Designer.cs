@@ -35,13 +35,14 @@
             this.exitBtn = new System.Windows.Forms.Button();
             this.welcomeLbl = new System.Windows.Forms.Label();
             this.errorLbl = new System.Windows.Forms.Label();
-            this.passwordTxt = new System.Windows.Forms.RichTextBox();
+            this.passwordTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // usernameTxt
             // 
+            this.usernameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameTxt.Location = new System.Drawing.Point(548, 238);
-            this.usernameTxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.usernameTxt.Margin = new System.Windows.Forms.Padding(4);
             this.usernameTxt.Name = "usernameTxt";
             this.usernameTxt.Size = new System.Drawing.Size(440, 50);
             this.usernameTxt.TabIndex = 0;
@@ -52,10 +53,10 @@
             this.signInBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.signInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signInBtn.Location = new System.Drawing.Point(812, 483);
-            this.signInBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.signInBtn.Margin = new System.Windows.Forms.Padding(4);
             this.signInBtn.Name = "signInBtn";
             this.signInBtn.Size = new System.Drawing.Size(176, 56);
-            this.signInBtn.TabIndex = 2;
+            this.signInBtn.TabIndex = 3;
             this.signInBtn.Text = "Sign In";
             this.signInBtn.UseVisualStyleBackColor = false;
             this.signInBtn.Click += new System.EventHandler(this.signInButton_Click);
@@ -87,10 +88,10 @@
             this.exitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitBtn.Location = new System.Drawing.Point(608, 483);
-            this.exitBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(176, 56);
-            this.exitBtn.TabIndex = 5;
+            this.exitBtn.TabIndex = 4;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = false;
             this.exitBtn.Click += new System.EventHandler(this.exitButton_Click);
@@ -118,12 +119,12 @@
             // 
             // passwordTxt
             // 
-            this.passwordTxt.Location = new System.Drawing.Point(548, 316);
-            this.passwordTxt.Margin = new System.Windows.Forms.Padding(4);
+            this.passwordTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTxt.Location = new System.Drawing.Point(548, 328);
             this.passwordTxt.Name = "passwordTxt";
-            this.passwordTxt.Size = new System.Drawing.Size(440, 50);
-            this.passwordTxt.TabIndex = 8;
-            this.passwordTxt.Text = "";
+            this.passwordTxt.PasswordChar = '*';
+            this.passwordTxt.Size = new System.Drawing.Size(440, 38);
+            this.passwordTxt.TabIndex = 2;
             // 
             // SignInForm
             // 
@@ -138,7 +139,7 @@
             this.Controls.Add(this.usernameLbl);
             this.Controls.Add(this.signInBtn);
             this.Controls.Add(this.usernameTxt);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SignInForm";
             this.Text = "SignInForm";
             this.Load += new System.EventHandler(this.SignInForm_Load);
@@ -156,7 +157,7 @@
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Label welcomeLbl;
         private System.Windows.Forms.Label errorLbl;
-        private System.Windows.Forms.RichTextBox passwordTxt;
+        private System.Windows.Forms.TextBox passwordTxt;
     }
 }
 
