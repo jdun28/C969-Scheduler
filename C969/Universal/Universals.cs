@@ -44,13 +44,17 @@ namespace ScheduleProgram.Universal
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
+                connect.Open();
                 string getUser = "SELECT userName FROM user;";
                 MySqlCommand user = new MySqlCommand(getUser, connect);
-                var userResult = user.ExecuteScalar();
-                if (userResult != null)
+                MySqlDataReader reader = user.ExecuteReader();
+                DataTable userResult = new DataTable();
+                userResult.Load(reader);
+                if (userResult.Rows.Count > 0)
                 {
-                    CurrentUser = userResult.ToString();
+                    CurrentUser = userResult.Rows[0][0].ToString();
                 }
+                connect.Close();
             }
         }
 
@@ -58,13 +62,17 @@ namespace ScheduleProgram.Universal
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
+                connect.Open();
                 string getID = "SELECT userId FROM user;";
                 MySqlCommand id = new MySqlCommand(getID, connect);
-                var userID = id.ExecuteScalar();
-                if (userID != null)
+                MySqlDataReader reader = id.ExecuteReader();
+                DataTable userID = new DataTable();
+                userID.Load(reader);
+                if (userID.Rows.Count > 0)
                 {
-                    CurrentUserID = Convert.ToInt32(userID);
+                    CurrentUserID = Convert.ToInt32(userID.Rows[0][0]);
                 }
+                connect.Close();
             }
         }
         public static bool IsNotNullOrEmpty(string text)

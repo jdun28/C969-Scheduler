@@ -126,7 +126,7 @@ namespace ScheduleProgram
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
                 connect.Open();
-                MySqlCommand apptCheck = new MySqlCommand("SELECT * from appointment where start between '" +
+                MySqlCommand apptCheck = new MySqlCommand("SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.start, appointment.end from appointment INNER JOIN customer on appointment.appointmentId = customer.customerId where start between '" +
                     Current.ToString("yyy-MM-dd HH:mm:ss") + "' AND '" +
                     Future.ToString("yyyy-MM-dd HH:mm:ss") + "'", connect);
                 MySqlDataReader apptRead = apptCheck.ExecuteReader();
@@ -134,7 +134,10 @@ namespace ScheduleProgram
 
                 if (upcoming.Rows.Count > 0)
                 {
-                    MessageBox.Show(upcoming.ToString(), "Upcoming Appointments!");
+                    for (int i = 0; i < upcoming.Rows.Count; i++)
+                    {
+                        MessageBox.Show("You have an appointment with " + upcoming.Rows[i]["customerName"] + " within the next 15 minutes.", "Upcoming Appointments!");
+                    }
                 }
                 connect.Close();
             }
