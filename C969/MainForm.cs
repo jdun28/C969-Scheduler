@@ -396,5 +396,19 @@ namespace ScheduleProgram
             ApptByMonth monReport = new ApptByMonth();
             monReport.Show();
         }
+
+        private void apptByCustBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ApptByCust custReport = new ApptByCust();
+            custReport.Show();
+        }
+
+        private void userSchedBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserSchedule userSched = new UserSchedule();
+            userSched.Show();
+        }
     }
 }

@@ -15,8 +15,8 @@ namespace ScheduleProgram
 {
     public partial class AddEditApptForm : Form
     {
-        
 
+        delegate void del();
         public AddEditApptForm()
         {
             string customerName= "SELECT customerName from customer;";
@@ -60,18 +60,108 @@ namespace ScheduleProgram
         }
         private void saveApptBtn_Click(object sender, EventArgs e)
         {
+            if (HourCheck() != false)
+            {
+            }
+            
             if (Universals.AppointmentID > 0)
             {
+                using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+                {
+                    DateTime currentStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value);
+                    DateTime currentEnd = TimeZoneInfo.ConvertTimeToUtc(endTimePicker.Value);
+
+                    DataTable overlap = new DataTable();
+                    string getAllAppts = "SELECT appointmentId, customerId, type, start, end FROM appointment;";
+
+                    connect.Open();
+                    MySqlCommand cmd = new MySqlCommand(getAllAppts, connect);
+                    MySqlDataReader compare = cmd.ExecuteReader();
+                    overlap.Load(compare);
+
+                    if (overlap.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < overlap.Rows.Count; i++)
+                        {
+                            DateTime scheduledStart = Convert.ToDateTime(overlap.Rows[i]["start"]);
+                            DateTime scheduledEnd = Convert.ToDateTime(overlap.Rows[i]["end"]);
+
+                            if (currentStart < scheduledEnd && scheduledStart < currentEnd)
+                            {
+                                errorLbl.Text = "Cannot schedule overlapping appointments.";
+                            }
+                        }
+                    }
+                    connect.Close();
+                }
                 UpdateAppointment();
             }
             else
             {
-                InsertAppointment();
+                using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+                {
+                    DateTime currentStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value);
+                    DateTime currentEnd = TimeZoneInfo.ConvertTimeToUtc(endTimePicker.Value);
+
+                    DataTable overlap = new DataTable();
+                    string getAllAppts = "SELECT appointmentId, customerId, type, start, end FROM appointment;";
+
+                    connect.Open();
+                    MySqlCommand cmd = new MySqlCommand(getAllAppts, connect);
+                    MySqlDataReader compare = cmd.ExecuteReader();
+                    overlap.Load(compare);
+
+                    if (overlap.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < overlap.Rows.Count; i++)
+                        {
+                            DateTime scheduledStart = Convert.ToDateTime(overlap.Rows[i]["start"]);
+                            DateTime scheduledEnd = Convert.ToDateTime(overlap.Rows[i]["end"]);
+
+                            if (currentStart <= scheduledEnd && scheduledStart <= currentEnd)
+                            {
+                                errorLbl.Text = "Cannot schedule overlapping appointments.";
+                                break;
+                            }
+                        }
+                    }
+                    connect.Close();
+                }
+            InsertAppointment();
             }
         }
 
         private void InsertAppointment()
         {
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                DateTime currentStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value);
+                DateTime currentEnd = TimeZoneInfo.ConvertTimeToUtc(endTimePicker.Value);
+
+                DataTable overlap = new DataTable();
+                string getAllAppts = "SELECT appointmentId, start, end FROM appointment;";
+
+                connect.Open();
+                MySqlCommand cmd = new MySqlCommand(getAllAppts, connect);
+                MySqlDataReader compare = cmd.ExecuteReader();
+                overlap.Load(compare);
+
+                if (overlap.Rows.Count > 0)
+                {
+                    for (int i = 0; i < overlap.Rows.Count; i++)
+                    {
+                        DateTime scheduledStart = Convert.ToDateTime(overlap.Rows[i]["start"]);
+                        DateTime scheduledEnd = Convert.ToDateTime(overlap.Rows[i]["end"]);
+
+                        if (currentStart < scheduledEnd && scheduledStart < currentEnd)
+                        {
+                            errorLbl.Text = "Cannot schedule overlapping appointments.";
+
+                        }
+                    }
+                }
+                connect.Close();
+            }
             try
             {
                 using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
@@ -110,14 +200,15 @@ namespace ScheduleProgram
                 }
                 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.ToString());
+                //MessageBox.Show(e.ToString());
                 errorLbl.Text = "Unable to create appointment. Please try again."; 
             }
         }
         private void UpdateAppointment()
         {
+            
             try
             {
                 using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
@@ -163,5 +254,64 @@ namespace ScheduleProgram
 
             }
         }
+
+        private bool HourCheck()
+        {
+            TimeSpan open = new TimeSpan(8, 0, 0);
+            TimeSpan close = new TimeSpan(17, 1, 0);
+
+            TimeSpan appointmentStart = startTimePicker.Value.TimeOfDay;
+            TimeSpan appointmentEnd = endTimePicker.Value.TimeOfDay;
+
+            if (appointmentStart < open || appointmentEnd > close)
+            {
+                errorLbl.Text = "Appointment must be scheduled between 8am and 5pm.";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        //private bool OverlapCheck()
+        //{
+        //    using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+        //    {
+        //        DateTime currentStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value);
+        //        DateTime currentEnd = TimeZoneInfo.ConvertTimeToUtc(endTimePicker.Value);
+
+        //        DataTable overlap = new DataTable();
+        //        string getAllAppts = "SELECT appointmentId, start, end FROM appointment;";
+
+        //        connect.Open();
+        //        MySqlCommand cmd = new MySqlCommand(getAllAppts, connect);
+        //        MySqlDataReader compare = cmd.ExecuteReader();
+        //        overlap.Load(compare);
+
+        //        if (overlap.Rows.Count > 0)
+        //        {
+        //            for (int i = 0; i < overlap.Rows.Count; i++)
+        //            {
+        //                DateTime scheduledStart = Convert.ToDateTime(overlap.Rows[i]["start"]);
+        //                DateTime scheduledEnd = Convert.ToDateTime(overlap.Rows[i]["end"]);
+
+        //                if (currentStart < scheduledEnd && scheduledStart < currentEnd)
+        //                {
+        //                    errorLbl.Text = "Cannot schedule overlapping appointments.";
+        //                    //return false;
+
+        //                }
+        //                connect.Close();
+        //            }
+        //            return false;
+        //        }
+        //        else
+        //        {
+        //            return true;
+        //        }
+                
+        //    }
+        //}
     }
 }
