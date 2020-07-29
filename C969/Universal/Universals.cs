@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace ScheduleProgram.Universal
 {
@@ -79,28 +80,33 @@ namespace ScheduleProgram.Universal
         {
             return !string.IsNullOrEmpty(text);
         }
-        public static void ValidateField(RichTextBox field, bool isValid)
+        public static bool ValidateField(RichTextBox field, bool isValid)
         {
             if (isValid)
             {
                 field.BackColor = System.Drawing.Color.White;
+                return true;
             }
             else
             {
                 field.BackColor = System.Drawing.Color.Salmon;
+                return false;
             }
         }
         public static bool CheckPhoneFormat(string phone)
         {
+            
+
             Regex checkPhoneFormat = new Regex(@"([0-9]{3}-[0-9]{4})");
             if (checkPhoneFormat.IsMatch(phone))
-            {
+                {
                 return true;
             }
             else
             {
                 return false;
             }
+            
         }
         public static bool CheckZipFormat(string zip)
         {

@@ -234,9 +234,9 @@ namespace ScheduleProgram
                         if (dialog == DialogResult.Yes)
                         {
                             delete.ExecuteNonQuery();
-                            DataTable appointmentDeleted = new DataTable();
-                            Universals.GetData(Appointment.apptQuery, appointmentDeleted);
-                            apptDgv.DataSource = appointmentDeleted;
+                            this.Hide();
+                            MainForm dash = new MainForm();
+                            dash.Show();
                         }
                     }
                     connect.Close();
@@ -255,7 +255,7 @@ namespace ScheduleProgram
             DateTime dayEnd = new DateTime();
 
             dayStart = selectedDate;
-            dayEnd = selectedDate;
+            dayEnd = selectedDate.AddDays(1);
 
             myCal.SetSelectionRange(dayStart, dayEnd);
 

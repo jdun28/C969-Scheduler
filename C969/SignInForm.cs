@@ -39,32 +39,30 @@ namespace ScheduleProgram
 
                 if (loginDt.Rows.Count > 0)
                 {
-                    {
-                        if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
-                        {
-                            errorLbl.Text = "El nombre de usuario o la contraseña son incorrectos.";
-                        }
-                        else
-                        {
-                            errorLbl.Text = "The username or password are incorrect.";
-                        }
-                    }
-                }
-                else
-                {      
                     //lambda to shorten syntax to let user know opening program
                     Hello obj = (currentUserName) => { return "Welcome to the scheduler system, " + currentUserName + " user."; };
                     string Hello = obj.Invoke(Universals.CurrentUser);
                     MessageBox.Show(Hello);
+                    WriteLogin();
+                    CheckAppt();
 
                     this.Hide();
                     MainForm dash = new MainForm();
                     dash.Show();
                 }
-            }
+                else
+                {
+                        if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
+                        {
+                            errorLbl.Text = "El nombre de usuario o la contraseña son incorrectos.";
 
-            WriteLogin();
-            CheckAppt();
+                        }
+                        else
+                        {
+                            errorLbl.Text = "The username or password are incorrect.";
+                        }
+                }
+            }
             Universals.GetCurrentUserName();
             Universals.GetCurrentUserID();
             
@@ -133,9 +131,9 @@ namespace ScheduleProgram
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
                 connect.Open();
-                MySqlCommand apptCheck = new MySqlCommand("SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.start, appointment.end from appointment INNER JOIN customer on appointment.appointmentId = customer.customerId where start between '" +
-                    Current.ToString("yyy-MM-dd HH:mm:ss") + "' AND '" +
-                    Future.ToString("yyyy-MM-dd HH:mm:ss") + "'", connect);
+                MySqlCommand apptCheck = new MySqlCommand("SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.start, appointment.end from appointment INNER JOIN customer on appointment.customerId = customer.customerId where start BETWEEN '" +
+                    Current.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" +
+                    Future.ToString("yyyy-MM-dd HH:mm:ss") + "';", connect);
                 MySqlDataReader apptRead = apptCheck.ExecuteReader();
                 upcoming.Load(apptRead);
 

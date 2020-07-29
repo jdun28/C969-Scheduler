@@ -109,11 +109,20 @@ namespace ScheduleProgram
 
         private void phoneTxt_TextChanged(object sender, EventArgs e)
         {
-            bool phoneFormat = Universals.CheckPhoneFormat(phoneTxt.Text.ToString());
+            bool format = Universals.CheckPhoneFormat(phoneTxt.Text.ToString());
             bool validPhone = Universals.IsNotNullOrEmpty(phoneTxt.Text);
             Universals.ValidateField(phoneTxt, validPhone);
-            Universals.ValidateField(phoneTxt, phoneFormat);
-            saveCustBtn.Enabled = SaveAllowed();          
+            Universals.ValidateField(phoneTxt, format);
+            if (phoneTxt.BackColor.Equals(System.Drawing.Color.Salmon))
+            {
+                errorLbl.Text = "Please enter phone as ###-####";
+                saveCustBtn.Enabled = false;
+            }
+            else if (phoneTxt.BackColor.Equals(System.Drawing.Color.White))
+            {
+                errorLbl.Text = "";
+                saveCustBtn.Enabled = true;
+            }
         }
 
         private void AddEditCustForm_Load(object sender, EventArgs e)

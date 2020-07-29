@@ -154,7 +154,7 @@
             // 
             // startTimePicker
             // 
-            this.startTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.startTimePicker.CustomFormat = "yyyy/MM/dd HH:mm:ss";
             this.startTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.startTimePicker.Location = new System.Drawing.Point(288, 291);
@@ -166,7 +166,7 @@
             // 
             // endTimePicker
             // 
-            this.endTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.endTimePicker.CustomFormat = "yyyy/MM/dd HH:mm:ss";
             this.endTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.endTimePicker.Location = new System.Drawing.Point(288, 352);
