@@ -221,10 +221,10 @@
         private System.Windows.Forms.Button cancelApptBtn;
         private System.Windows.Forms.Button saveApptBtn;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox custCB;
-        private System.Windows.Forms.ComboBox typeCB;
-        private System.Windows.Forms.DateTimePicker startTimePicker;
-        private System.Windows.Forms.DateTimePicker endTimePicker;
         private System.Windows.Forms.Label errorLbl;
+        public System.Windows.Forms.ComboBox custCB;
+        public System.Windows.Forms.ComboBox typeCB;
+        public System.Windows.Forms.DateTimePicker startTimePicker;
+        public System.Windows.Forms.DateTimePicker endTimePicker;
     }
 }

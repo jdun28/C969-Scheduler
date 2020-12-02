@@ -36,5 +36,19 @@ namespace ScheduleProgram.Universal
                 connect.Close();
             }
         }
+
+        public DataTable populateCurrentAppt(DataTable dt)
+        {
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                string apptInfo = apptQuery;
+                connect.Open();
+                MySqlCommand apptcmd = new MySqlCommand(apptInfo, connect);
+                MySqlDataReader areader = apptcmd.ExecuteReader();
+                dt.Load(areader);
+                connect.Close();
+                return dt;
+                }
+        }
     }
 }

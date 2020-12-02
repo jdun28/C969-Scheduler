@@ -15,7 +15,7 @@ namespace ScheduleProgram
 {
     public partial class AddEditApptForm : Form
     {
-
+        private static Appointment appointment;
         delegate void del();
         public AddEditApptForm()
         {
@@ -34,22 +34,13 @@ namespace ScheduleProgram
 
             if (Universals.AppointmentID > 0)
             {
-                using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
-                {
-                    DataTable ApptFill = new DataTable();
-                    string apptInfo = Appointment.apptQuery;
-
-                    connect.Open();
-                    MySqlCommand apptcmd = new MySqlCommand(apptInfo, connect);
-                    MySqlDataReader areader = apptcmd.ExecuteReader();
-                    ApptFill.Load(areader);
-
-                    custCB.Text = (string)ApptFill.Rows[Universals.CurrentApptIndex]["customerName"];
-                    typeCB.Text = (string)ApptFill.Rows[Universals.CurrentApptIndex]["type"];
-                    startTimePicker.Value = TimeZoneInfo.ConvertTimeFromUtc((DateTime)ApptFill.Rows[Universals.CurrentApptIndex]["start"], TimeZoneInfo.Local);
-                    endTimePicker.Value = TimeZoneInfo.ConvertTimeFromUtc((DateTime)ApptFill.Rows[Universals.CurrentApptIndex]["end"], TimeZoneInfo.Local);
-                    connect.Close();
-                }
+                appointment = new Appointment();
+                DataTable ApptFill = new DataTable();
+                appointment.populateCurrentAppt(ApptFill);
+                custCB.Text = (string)ApptFill.Rows[Universals.CurrentApptIndex]["customerName"];
+                typeCB.Text = (string)ApptFill.Rows[Universals.CurrentApptIndex]["type"];
+                startTimePicker.Value = TimeZoneInfo.ConvertTimeFromUtc((DateTime)ApptFill.Rows[Universals.CurrentApptIndex]["start"], TimeZoneInfo.Local);
+                endTimePicker.Value = TimeZoneInfo.ConvertTimeFromUtc((DateTime)ApptFill.Rows[Universals.CurrentApptIndex]["end"], TimeZoneInfo.Local);
             }
         }
         private void cancelApptBtn_Click(object sender, EventArgs e)
