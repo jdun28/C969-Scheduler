@@ -12,7 +12,7 @@ using System.IO;
 
 namespace ScheduleProgram.Universal
 {
-    class Universals
+    public class Universals
     {
         public static int CurrentCustIndex { get; set; }
         public static int CurrentApptIndex { get; set; }
