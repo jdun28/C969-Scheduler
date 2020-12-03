@@ -140,6 +140,7 @@ namespace ScheduleProgram
         {
             Universals.CurrentCustIndex = e.RowIndex;
             custDgv.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightYellow;
+ 
         }
         private void apptDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -363,6 +364,29 @@ namespace ScheduleProgram
             this.Hide();
             UserSchedule userSched = new UserSchedule();
             userSched.Show();
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            string customerText = searchTextBox.Text;
+            DataTable customerSearchResult = new DataTable();
+
+            string searchParams = "SELECT customerId, customerName, address.address, city.city, address.postalCode, country.country, address.phone "
+            + "FROM customer "
+            + "INNER JOIN address ON customer.addressId = address.addressId "
+            + "INNER JOIN city ON address.cityId = city.cityId "
+            + "INNER JOIN country on city.countryId = country.countryId "
+            + "WHERE customerName LIKE \"%" + customerText + "%\";";
+
+            universals.TableReader(searchParams, customerSearchResult);
+
+            if (customerSearchResult.Rows.Count > 0)
+            {
+                custDgv.DataSource = customerSearchResult;
+                custDgv.RowHeadersVisible = false;
+                custDgv.Columns["country"].Visible = false;
+                custDgv.Columns["customerId"].Visible = false;
+            }
         }
     }
 }

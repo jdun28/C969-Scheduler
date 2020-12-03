@@ -47,6 +47,6 @@ namespace ScheduleProgram.Universal
                 connect.Close();
                 return dt;
             }
-        }        
+        }
     }
 }
