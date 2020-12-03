@@ -14,7 +14,7 @@ namespace ScheduleProgram.Universal
     public class Customer
     {
         //query to create selection for custDgv
-        public static string findAllCustQuery =
+        public string findAllCustQuery =
             "SELECT customerId, customerName, address.address, city.city, address.postalCode, country.country, address.phone "
             + "FROM customer "
             + "INNER JOIN address ON customer.addressId = address.addressId "
@@ -22,7 +22,7 @@ namespace ScheduleProgram.Universal
             + "INNER JOIN country on city.countryId = country.countryId "
             + "ORDER BY customerId ASC;";
 
-        public static void populateCustData(string c, DataTable dt)
+        public void PopulateCustData(string c, DataTable dt)
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
@@ -33,5 +33,20 @@ namespace ScheduleProgram.Universal
                 connect.Close();
             }
         }
+
+        public DataTable InsertAddress(string insertAddress, string getAddress, DataTable dt)
+        {
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                connect.Open();
+                MySqlCommand findAddress = new MySqlCommand(insertAddress, connect);
+                findAddress.ExecuteNonQuery();
+                MySqlCommand returnAddress = new MySqlCommand(getAddress, connect);                 
+                MySqlDataAdapter adapter = new MySqlDataAdapter(returnAddress);
+                adapter.Fill(dt);
+                connect.Close();
+                return dt;
+            }
+        }        
     }
 }

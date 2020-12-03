@@ -14,57 +14,37 @@ namespace ScheduleProgram
 {
     public partial class ApptByCust : Form
     {
+        private static Universals universals = new Universals();
         string customers = "SELECT customerName from customer;";
         int CustomerID;
-        
+
         public ApptByCust()
         {
             InitializeComponent();
             DataTable customerList = new DataTable();
-            Universals.GetData(customers, customerList);
+            universals.GetData(customers, customerList);
             custCB.DataSource = customerList;
             custCB.DisplayMember = "customerName";
-            //populateAppointments();
-                       
-        }
-
-        private void custCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void populateAppointments()
         {
-            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            string customerName = custCB.GetItemText(custCB.Text);
+            string sql = "SELECT customerId from customer where customerName = '" + customerName + "';";
+            DataTable customerId = new DataTable();
+            universals.TableReader(sql, customerId);
+
+            if (customerId.Rows.Count == 1)
             {
-                connect.Open();
-                string customerName = custCB.GetItemText(custCB.Text);
-                string sql = "SELECT customerId from customer where customerName = '" + customerName + "';";
-                
-
-                DataTable customerId = new DataTable();
-                MySqlCommand cmd = new MySqlCommand(sql, connect);
-                MySqlDataReader customerReader = cmd.ExecuteReader();
-                customerId.Load(customerReader);
-
-                if (customerId.Rows.Count == 1)
-                {
-                    int custId = (int)customerId.Rows[0][0];
-                    CustomerID = custId;
-                }
-
-                string getAppointments = "SELECT appointmentId, type, start, end FROM appointment WHERE customerId = '" + CustomerID + "';";
-
-                DataTable appointments = new DataTable();
-                MySqlCommand appointmentCommand = new MySqlCommand(getAppointments, connect);
-                MySqlDataReader appointmentReader = appointmentCommand.ExecuteReader();
-                appointments.Load(appointmentReader);
-
-                apptByCustDgv.DataSource = appointments;
-
-                connect.Close();
-
+                int custId = (int)customerId.Rows[0][0];
+                CustomerID = custId;
             }
+
+            string getAppointments = "SELECT appointmentId, type, start, end FROM appointment WHERE customerId = '" + CustomerID + "';";
+
+            DataTable appointments = new DataTable();
+            universals.TableReader(getAppointments, appointments);
+            apptByCustDgv.DataSource = appointments;
         }
 
         private void generateReportBtn_Click(object sender, EventArgs e)

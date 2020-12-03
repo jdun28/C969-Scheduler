@@ -15,8 +15,11 @@ namespace ScheduleProgram
 {
     public partial class AddEditApptForm : Form
     {
-        private static Appointment appointment;
+        private static Appointment appointment = new Appointment();
+        private static Customer customer = new Customer();
+        private static Universals universals = new Universals();
         delegate void del();
+        private string getAllAppts = "SELECT appointmentId, customerId, type, start, end FROM appointment;";
         public AddEditApptForm()
         {
             string customerName = "SELECT customerName from customer;";
@@ -24,19 +27,21 @@ namespace ScheduleProgram
             DataTable customers = new DataTable();
             DataTable type = new DataTable();
             InitializeComponent();
-            Universals.GetData(customerName, customers);
+            universals.GetData(customerName, customers);
             custCB.DataSource = customers;
             custCB.DisplayMember = "customerName";
-            Universals.GetData(apptType, type);
+            universals.GetData(apptType, type);
             typeCB.DataSource = type;
             typeCB.DisplayMember = "type";
 
 
             if (Universals.AppointmentID > 0)
             {
-                appointment = new Appointment();
+             
                 DataTable ApptFill = new DataTable();
-                appointment.populateCurrentAppt(ApptFill);
+                string apptInfo = appointment.apptQuery;
+                universals.TableReader(apptInfo, ApptFill);
+
                 custCB.Text = (string)ApptFill.Rows[Universals.CurrentApptIndex]["customerName"];
                 typeCB.Text = (string)ApptFill.Rows[Universals.CurrentApptIndex]["type"];
                 startTimePicker.Value = TimeZoneInfo.ConvertTimeFromUtc((DateTime)ApptFill.Rows[Universals.CurrentApptIndex]["start"], TimeZoneInfo.Local);
@@ -68,22 +73,13 @@ namespace ScheduleProgram
 
         private void InsertAppointment()
         {
-            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            DataTable overlap = new DataTable();
             {
-
                 try
                 {
-                    connect.Open();
-
-                    DataTable overlap = new DataTable();
-                    string getAllAppts = "SELECT appointmentId, customerId, type, start, end FROM appointment;";
-
+                    universals.TableReader(getAllAppts, overlap);
                     DateTime currentStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value);
                     DateTime currentEnd = TimeZoneInfo.ConvertTimeToUtc(endTimePicker.Value);
-
-                    MySqlCommand cmd = new MySqlCommand(getAllAppts, connect);
-                    MySqlDataReader compare = cmd.ExecuteReader();
-                    overlap.Load(compare);
 
                     if (overlap.Rows.Count > 0)
                     {
@@ -100,39 +96,32 @@ namespace ScheduleProgram
                             }
                         }
                     }
-                    if (Universals.IsNotNullOrEmpty(errorLbl.Text))
+                    if (universals.IsNotNullOrEmpty(errorLbl.Text))
                     {
-
                     }
                     else
                     {
-
+                        DataTable custResult = new DataTable();
                         string getCustomer = custCB.GetItemText(custCB.Text);
                         string getType = typeCB.GetItemText(typeCB.Text);
                         string getStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value).ToString("yyyy-MM-dd HH:mm:ss");
                         string getEnd = TimeZoneInfo.ConvertTimeToUtc(endTimePicker.Value).ToString("yyyy-MM-dd HH:mm:ss");
 
                         string sql = "SELECT customerId FROM customer WHERE customerName = '" + getCustomer + "';";
+                        
+                        customer.PopulateCustData(sql, custResult);
 
-                        MySqlCommand customer = new MySqlCommand(sql, connect);
-                        MySqlDataAdapter customerAdapter = new MySqlDataAdapter(customer);
-                        DataTable custResult = new DataTable();
-                        customerAdapter.Fill(custResult);
                         if (custResult.Rows.Count > 0)
                         {
                             int custID = Convert.ToInt32(custResult.Rows[0][0]);
                             Universals.CustomerID = custID;
                         }
-
                         //SQL query to insert appointment data
-                        string insertAppointment = "INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdateBy) " +
+                        string appointmentData = "INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdateBy) " +
                             "VALUES ('" + Universals.CustomerID + "', '" + Universals.CurrentUserID + "', 'not needed', 'not needed', 'not needed', 'not needed', '" + getType + "', 'not needed', '" + getStart + "', '" + getEnd + "', '" +
                             TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "', '" + Universals.CurrentUser + "');";
+                        universals.ExecuteNonQueryUpdater(appointmentData);
 
-                        MySqlCommand insertAppointmentData = new MySqlCommand(insertAppointment, connect);
-
-                        insertAppointmentData.ExecuteNonQuery();
-                        connect.Close();
                         this.Hide();
                         MainForm dash = new MainForm();
                         dash.Show();
@@ -147,25 +136,15 @@ namespace ScheduleProgram
 
         }
 
-
-
         private void UpdateAppointment()
         {
-            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            DataTable overlap = new DataTable();
             {
                 try
                 {
-                    connect.Open();
-
-                    DataTable overlap = new DataTable();
-                    string getAllAppts = "SELECT appointmentId, customerId, type, start, end FROM appointment;";
-
+                    universals.TableReader(getAllAppts, overlap);
                     DateTime currentStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value);
                     DateTime currentEnd = TimeZoneInfo.ConvertTimeToUtc(endTimePicker.Value);
-
-                    MySqlCommand cmd = new MySqlCommand(getAllAppts, connect);
-                    MySqlDataReader compare = cmd.ExecuteReader();
-                    overlap.Load(compare);
 
                     if (overlap.Rows.Count > 0)
                     {
@@ -182,12 +161,12 @@ namespace ScheduleProgram
                             }
                         }
                     }
-                    if (Universals.IsNotNullOrEmpty(errorLbl.Text))
+                    if (universals.IsNotNullOrEmpty(errorLbl.Text))
                     {
-
                     }
                     else
                     {
+                        DataTable custIdResult = new DataTable();
                         string getCustomer = custCB.GetItemText(custCB.Text);
                         string getType = typeCB.GetItemText(typeCB.Text);
                         string getStart = TimeZoneInfo.ConvertTimeToUtc(startTimePicker.Value).ToString("yyyy-MM-dd HH:mm:ss");
@@ -195,16 +174,13 @@ namespace ScheduleProgram
 
                         string sql = "SELECT customerId FROM customer WHERE customerName = '" + getCustomer + "';";
 
-                        MySqlCommand getCustomerId = new MySqlCommand(sql, connect);
-                        MySqlDataAdapter custAdapter = new MySqlDataAdapter(getCustomerId);
-                        DataTable custIdResult = new DataTable();
-                        custAdapter.Fill(custIdResult);
+                        customer.PopulateCustData(sql, custIdResult);
+
                         if (custIdResult.Rows.Count > 0)
                         {
                             int customerid = Convert.ToInt32(custIdResult.Rows[0][0]);
                             Universals.CustomerID = customerid;
                         }
-
                         // SQL query to update appointment data
                         string updateAppointment = "UPDATE appointment SET customerId = '" + Universals.CustomerID + "', userId = '" + Universals.CurrentUserID +
                             "', title = 'not needed', description = 'not needed', location = 'not needed', contact = 'not needed', type = '" + getType +
@@ -212,19 +188,14 @@ namespace ScheduleProgram
                             TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', lastUpdateBy ='" + Universals.CurrentUser + "'" +
                             " WHERE appointmentID = '" + Universals.AppointmentID + "';";
 
-                        MySqlCommand update = new MySqlCommand(updateAppointment, connect);
-                        update.ExecuteNonQuery();
-                        connect.Close();
-
+                        universals.ExecuteNonQueryUpdater(updateAppointment);
                         this.Hide();
                         MainForm dash = new MainForm();
                         dash.Show();
                     }
                 }
-
                 catch (Exception)
                 {
-                    //MessageBox.Show(e.ToString());
                     errorLbl.Text = "Unable to update appointment.Please try again.";
                 }
             }

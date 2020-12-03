@@ -69,7 +69,6 @@
             this.custCB.Name = "custCB";
             this.custCB.Size = new System.Drawing.Size(327, 45);
             this.custCB.TabIndex = 2;
-            this.custCB.SelectedIndexChanged += new System.EventHandler(this.custCB_SelectedIndexChanged);
             // 
             // custLbl
             // 

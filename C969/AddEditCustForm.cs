@@ -19,16 +19,18 @@ namespace ScheduleProgram
 
         public static int cID;
         public static int aID;
+        private static Customer customer = new Customer();
+        private static Universals universals = new Universals();
 
         private bool SaveAllowed()
         {
-            if (!Universals.IsNotNullOrEmpty(nameTxt.Text))
+            if (!universals.IsNotNullOrEmpty(nameTxt.Text))
             { return false; }
-            if (!Universals.IsNotNullOrEmpty(addressTxt.Text))
+            if (!universals.IsNotNullOrEmpty(addressTxt.Text))
             { return false; }
-            if (!Universals.IsNotNullOrEmpty(zipTxt.Text))
+            if (!universals.IsNotNullOrEmpty(zipTxt.Text))
             { return false; }
-            if (!Universals.IsNotNullOrEmpty(phoneTxt.Text))
+            if (!universals.IsNotNullOrEmpty(phoneTxt.Text))
             { return false; }
             return true;
         }
@@ -37,7 +39,7 @@ namespace ScheduleProgram
             string city = "SELECT city from city;";
             DataTable cityDt = new DataTable();
             InitializeComponent();
-            Universals.GetData(city, cityDt);
+            universals.GetData(city, cityDt);
             cityCB.DataSource = cityDt;
             cityCB.DisplayMember = "City";
 
@@ -45,23 +47,14 @@ namespace ScheduleProgram
         if (Universals.CustomerID > 0)
             {
                 DataTable customerFill = new DataTable();
-                string custInfo = Customer.findAllCustQuery;
-                    
-            
-                using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
-                {
-                    connect.Open();
-                    MySqlCommand ccmd = new MySqlCommand(custInfo, connect);
-                    MySqlDataReader creader = ccmd.ExecuteReader();
-                    customerFill.Load(creader);
+                string custInfo = customer.findAllCustQuery;
 
-                    nameTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["customerName"];
-                    addressTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["address"];
-                    zipTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["postalCode"];
-                    phoneTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["phone"];
-                    cityCB.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["city"];
-                    connect.Close();
-                }
+                universals.TableReader(custInfo, customerFill);
+                nameTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["customerName"];
+                addressTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["address"];
+                zipTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["postalCode"];
+                phoneTxt.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["phone"];
+                cityCB.Text = (string)customerFill.Rows[Universals.CurrentCustIndex]["city"];
             }
         }
         private void cancelCustBtn_Click(object sender, EventArgs e)
@@ -86,33 +79,33 @@ namespace ScheduleProgram
         }
         private void nameTxt_TextChanged(object sender, EventArgs e)
         {
-            bool validName = Universals.IsNotNullOrEmpty(nameTxt.Text);
-            Universals.ValidateField(nameTxt, validName);
+            bool validName = universals.IsNotNullOrEmpty(nameTxt.Text);
+            universals.ValidateField(nameTxt, validName);
             saveCustBtn.Enabled = SaveAllowed();
         }
 
         private void addressTxt_TextChanged(object sender, EventArgs e)
         {
-            bool validAddress = Universals.IsNotNullOrEmpty(addressTxt.Text);
-            Universals.ValidateField(addressTxt, validAddress);
+            bool validAddress = universals.IsNotNullOrEmpty(addressTxt.Text);
+            universals.ValidateField(addressTxt, validAddress);
             saveCustBtn.Enabled = SaveAllowed();
         }
 
         private void zipTxt_TextChanged(object sender, EventArgs e)
         {
-            bool zipFormat = Universals.CheckZipFormat(zipTxt.Text.ToString());
-            bool validZip = Universals.IsNotNullOrEmpty(zipTxt.Text);
-            Universals.ValidateField(zipTxt, validZip);
-            Universals.ValidateField(zipTxt, zipFormat);
+            bool zipFormat = universals.CheckZipFormat(zipTxt.Text.ToString());
+            bool validZip = universals.IsNotNullOrEmpty(zipTxt.Text);
+            universals.ValidateField(zipTxt, validZip);
+            universals.ValidateField(zipTxt, zipFormat);
             saveCustBtn.Enabled = SaveAllowed();
         }
 
         private void phoneTxt_TextChanged(object sender, EventArgs e)
         {
-            bool format = Universals.CheckPhoneFormat(phoneTxt.Text.ToString());
-            bool validPhone = Universals.IsNotNullOrEmpty(phoneTxt.Text);
-            Universals.ValidateField(phoneTxt, validPhone);
-            Universals.ValidateField(phoneTxt, format);
+            bool format = universals.CheckPhoneFormat(phoneTxt.Text.ToString());
+            bool validPhone = universals.IsNotNullOrEmpty(phoneTxt.Text);
+            universals.ValidateField(phoneTxt, validPhone);
+            universals.ValidateField(phoneTxt, format);
             if (phoneTxt.BackColor.Equals(System.Drawing.Color.Salmon))
             {
                 errorLbl.Text = "Please enter phone as ###-####";
@@ -134,20 +127,15 @@ namespace ScheduleProgram
         {
             try
             {
-                using (MySqlConnection con = new MySqlConnection(SqlDatabase.ConnectionString))
                 {
-                    con.Open();
-
                     //finding name of city from drop down
                     string getCity = cityCB.GetItemText(cityCB.Text);
                     
                     //selecting city id based off of city name
                     string sql = "SELECT cityId from city where city = '" + getCity + "';";
 
-                    MySqlCommand city = new MySqlCommand(sql, con);
-                    MySqlDataAdapter cityAdapter = new MySqlDataAdapter(city);
                     DataTable cityResult = new DataTable();
-                    cityAdapter.Fill(cityResult);
+                    universals.GetData(sql, cityResult);
                     if (cityResult.Rows.Count > 0)
                     {
                         int cID = Convert.ToInt32(cityResult.Rows[0][0]);
@@ -162,12 +150,8 @@ namespace ScheduleProgram
                     //query to get address ID from address table
                     string getAddress = "SELECT addressId FROM address WHERE address = '" + addressTxt.Text + "';";
 
-                    MySqlCommand addressInsert = new MySqlCommand(insertAddressData, con);
-                    addressInsert.ExecuteNonQuery();
-                    MySqlCommand address = new MySqlCommand(getAddress, con);
-                    MySqlDataAdapter addressAdapter = new MySqlDataAdapter(address);
                     DataTable addressResult = new DataTable();
-                    addressAdapter.Fill(addressResult);
+                    customer.InsertAddress(insertAddressData, getAddress, addressResult);
 
                     if (addressResult.Rows.Count > 0)
                     {
@@ -181,10 +165,7 @@ namespace ScheduleProgram
                         "VALUES ('" + nameTxt.Text + "', '" + Universals.AddressID + "', 1 ,'" +
                         TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Universals.CurrentUser + "', '" + Universals.CurrentUser + "');";
 
-                    MySqlCommand insertCustomer = new MySqlCommand(insertCustData, con);
-                    insertCustomer.ExecuteNonQuery();
-                    con.Close();
-
+                    universals.ExecuteNonQueryUpdater(insertCustData);
                     this.Hide();
                     MainForm dash = new MainForm();
                     dash.Show();
@@ -200,17 +181,12 @@ namespace ScheduleProgram
         {
             try
             {
-                using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
                 {
-                    connect.Open();
-                    //string to get city from dropdown
                     string updateCity = cityCB.GetItemText(cityCB.SelectedItem);
                     string citySql = "SELECT cityId FROM city WHERE city ='" + updateCity + "';";
 
-                    MySqlCommand getCity = new MySqlCommand(citySql, connect);
-                    MySqlDataAdapter city = new MySqlDataAdapter(getCity);
                     DataTable cityCombo = new DataTable();
-                    city.Fill(cityCombo);
+                    universals.GetData(citySql, cityCombo);
                     if (cityCombo.Rows.Count >0)
                     {
                         int id = (int)cityCombo.Rows[0][0];
@@ -219,10 +195,8 @@ namespace ScheduleProgram
 
                     string addressID = "SELECT addressId FROM customer WHERE customerId = '" + Universals.CustomerID + "';";
 
-                    MySqlCommand getAddress = new MySqlCommand(addressID, connect);
-                    MySqlDataAdapter address = new MySqlDataAdapter(getAddress);
                     DataTable addressDt = new DataTable();
-                    address.Fill(addressDt);
+                    universals.GetData(addressID, addressDt);
                     if (addressDt.Rows.Count > 0)
                     {
                         int addressid = (int)addressDt.Rows[0][0];
@@ -240,13 +214,8 @@ namespace ScheduleProgram
                         "lastUpdateBy = '" + Universals.CurrentUser + "' " +
                         "WHERE customerId = '" + Universals.CustomerID + "';";
 
-                    MySqlCommand updateAddress = new MySqlCommand(addressUpdate, connect);
-                    updateAddress.ExecuteNonQuery();
-
-                    MySqlCommand updateCustomer = new MySqlCommand(customerUpdate, connect);
-                    updateCustomer.ExecuteNonQuery();
-                    connect.Close();
-
+                    universals.ExecuteNonQueryUpdater(addressUpdate);
+                    universals.ExecuteNonQueryUpdater(customerUpdate);
                     this.Hide();
                     MainForm dash = new MainForm();
                     dash.Show();

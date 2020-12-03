@@ -5,17 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace ScheduleProgram.Universal
 {
     public class Appointment
     {
         //query to create appointment view for apptDgv
-        public static string apptQuery =
+        public string apptQuery =
             "SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.type, appointment.start, appointment.end "
             + " FROM appointment "
             + " INNER JOIN customer ON appointment.customerId = customer.customerId;";
-        public static void populateApptData(string a, DataTable dt)
+        public void PopulateApptData(string a, DataTable dt)
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
@@ -31,24 +32,13 @@ namespace ScheduleProgram.Universal
                         dt.Rows[i]["end"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["end"], TimeZoneInfo.Local).ToString();
 
                     }
+                    connect.Close();
                 }
-
-                connect.Close();
+                else
+                {
+                    MessageBox.Show("Cann't get appointment data");
+                }
             }
-        }
-
-        public DataTable populateCurrentAppt(DataTable dt)
-        {
-            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
-            {
-                string apptInfo = apptQuery;
-                connect.Open();
-                MySqlCommand apptcmd = new MySqlCommand(apptInfo, connect);
-                MySqlDataReader areader = apptcmd.ExecuteReader();
-                dt.Load(areader);
-                connect.Close();
-                return dt;
-                }
         }
     }
 }

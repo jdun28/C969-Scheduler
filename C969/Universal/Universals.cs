@@ -29,7 +29,7 @@ namespace ScheduleProgram.Universal
 
         public static int AddressID { get; set; }
 
-        public static void GetData(string d, DataTable dt)
+        public DataTable GetData(string d, DataTable dt)
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
@@ -38,10 +38,11 @@ namespace ScheduleProgram.Universal
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 connect.Close();
+                return dt;
             }
         }
 
-        public static void GetCurrentUserName()
+        public void GetCurrentUserName()
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
@@ -59,7 +60,7 @@ namespace ScheduleProgram.Universal
             }
         }
 
-        public static void GetCurrentUserID()
+        public void GetCurrentUserID()
         {
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
@@ -76,11 +77,35 @@ namespace ScheduleProgram.Universal
                 connect.Close();
             }
         }
-        public static bool IsNotNullOrEmpty(string text)
+
+        public void ExecuteNonQueryUpdater(string updater)
         {
-            return !string.IsNullOrEmpty(text);
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                connect.Open();
+                MySqlCommand cmd = new MySqlCommand(updater, connect);
+                cmd.ExecuteNonQuery();
+                connect.Close();
+            }
         }
-        public static bool ValidateField(RichTextBox field, bool isValid)
+
+        public DataTable TableReader(string s, DataTable dt)
+        {
+            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            {
+                connect.Open();
+                MySqlCommand cmd = new MySqlCommand(s, connect);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                dt.Load(reader);
+                connect.Close();
+                return dt;
+            }
+        }
+        public bool IsNotNullOrEmpty(string s)
+        {
+            return !string.IsNullOrEmpty(s);
+        }
+        public bool ValidateField(RichTextBox field, bool isValid)
         {
             if (isValid)
             {
@@ -93,10 +118,8 @@ namespace ScheduleProgram.Universal
                 return false;
             }
         }
-        public static bool CheckPhoneFormat(string phone)
+        public bool CheckPhoneFormat(string phone)
         {
-            
-
             Regex checkPhoneFormat = new Regex(@"([0-9]{3}-[0-9]{4})");
             if (checkPhoneFormat.IsMatch(phone))
                 {
@@ -106,9 +129,8 @@ namespace ScheduleProgram.Universal
             {
                 return false;
             }
-            
         }
-        public static bool CheckZipFormat(string zip)
+        public bool CheckZipFormat(string zip)
         {
             Regex checkZipFormat = new Regex(@"([0-9]{5})");
             if (checkZipFormat.IsMatch(zip))

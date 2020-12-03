@@ -75,9 +75,7 @@ C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\bin\Debug\K4os.Compression.L
 C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\bin\Debug\K4os.Hash.xxHash.dll
 C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\bin\Debug\System.Memory.dll
 C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\bin\Debug\MySql.Data.xml
-C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\obj\Debug\ScheduleProgram.csprojAssemblyReference.cache
 C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\obj\Debug\ScheduleProgram.exe.config
 C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\obj\Debug\ScheduleProgram.AddEditApptForm.resources
 C:\Users\jendunlap\Source\Repos\C969-Scheduler\C969\obj\Debug\ScheduleProgram.AddEditCustForm.resources

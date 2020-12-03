@@ -21,11 +21,12 @@ namespace ScheduleProgram
     public partial class SignInForm : Form
     {
         public delegate string Hello(string uname);
+        private static Universals universals = new Universals();
+        
            
         public SignInForm()
         {
             InitializeComponent();
-            
         }
 
         private void signInButton_Click(object sender, EventArgs e)
@@ -33,10 +34,9 @@ namespace ScheduleProgram
 
             using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
             {
-                MySqlDataAdapter adapter = new MySqlDataAdapter("Select * From user where userName = '" + usernameTxt.Text + "' and password = '" + passwordTxt.Text + "'", connect);
+                string selectUser = "Select * From user where userName = '" + usernameTxt.Text + "' and password = '" + passwordTxt.Text + "'";
                 DataTable loginDt = new DataTable();
-                adapter.Fill(loginDt);
-
+                universals.GetData(selectUser, loginDt);
                 if (loginDt.Rows.Count > 0)
                 {
                     //lambda to shorten syntax to let user know opening program
@@ -52,25 +52,23 @@ namespace ScheduleProgram
                 }
                 else
                 {
-                        if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
-                        {
-                            errorLbl.Text = "El nombre de usuario o la contraseña son incorrectos.";
+                    if (RegionInfo.CurrentRegion.DisplayName == "Mexico")
+                    {
+                        errorLbl.Text = "El nombre de usuario o la contraseña son incorrectos.";
 
-                        }
-                        else
-                        {
-                            errorLbl.Text = "The username or password are incorrect.";
-                        }
+                    }
+                    else
+                    {
+                        errorLbl.Text = "The username or password are incorrect.";
+                    }
                 }
             }
-            Universals.GetCurrentUserName();
-            Universals.GetCurrentUserID();
-            
+            universals.GetCurrentUserName();
+            universals.GetCurrentUserID();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 
@@ -126,25 +124,18 @@ namespace ScheduleProgram
             DateTime Current = Convert.ToDateTime(DateTime.UtcNow);
             DateTime Future = Convert.ToDateTime(DateTime.UtcNow).AddMinutes(15);
 
+            string upcomingAppoinments = "SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.start, appointment.end from appointment INNER JOIN customer on appointment.customerId = customer.customerId where start BETWEEN '" +
+                Current.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" +
+                Future.ToString("yyyy-MM-dd HH:mm:ss") + "';";
             DataTable upcoming = new DataTable();
+            universals.TableReader(upcomingAppoinments, upcoming);
 
-            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            if (upcoming.Rows.Count > 0)
             {
-                connect.Open();
-                MySqlCommand apptCheck = new MySqlCommand("SELECT customer.customerId, customer.customerName, appointment.appointmentId, appointment.start, appointment.end from appointment INNER JOIN customer on appointment.customerId = customer.customerId where start BETWEEN '" +
-                    Current.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" +
-                    Future.ToString("yyyy-MM-dd HH:mm:ss") + "';", connect);
-                MySqlDataReader apptRead = apptCheck.ExecuteReader();
-                upcoming.Load(apptRead);
-
-                if (upcoming.Rows.Count > 0)
+                for (int i = 0; i < upcoming.Rows.Count; i++)
                 {
-                    for (int i = 0; i < upcoming.Rows.Count; i++)
-                    {
-                        MessageBox.Show("You have an appointment with " + upcoming.Rows[i]["customerName"] + " within the next 15 minutes.", "Upcoming Appointments!");
-                    }
+                    MessageBox.Show("You have an appointment with " + upcoming.Rows[i]["customerName"] + " within the next 15 minutes.", "Upcoming Appointments!");
                 }
-                connect.Close();
             }
         }
 

@@ -16,6 +16,7 @@ namespace ScheduleProgram
     public partial class ApptByMonth : Form
     {
         string date;
+        private static Universals universals = new Universals();
 
         public ApptByMonth()
         {
@@ -25,6 +26,7 @@ namespace ScheduleProgram
             monthCB.Items.Add("Sep 2020");
             monthCB.Items.Add("Oct 2020");
             monthCB.Items.Add("Nov 2020");
+            monthCB.Items.Add("Dec 2020");
         }
         private void generateReportBtn_Click(object sender, EventArgs e)
         {
@@ -48,64 +50,75 @@ namespace ScheduleProgram
             {
                 date = "2020-11%";
             }
+            else if(monthCB.GetItemText(monthCB.Text) == "Dec 2020")
+            {
+                date = "2020-12%";
+            }
             else
             {
                 MessageBox.Show("Please select a month.");
             }
 
             string selectAllAppointmentsMonth = "SELECT  appointmentId, customerId, type FROM appointment WHERE start LIKE '" + date + "';";
+            DataTable allAppointmentsDt = new DataTable();
+            universals.TableReader(selectAllAppointmentsMonth, allAppointmentsDt);
+            apptByMonDgv.DataSource = allAppointmentsDt;
 
             string selectDemoAppoinmentMonth = "SELECT COUNT(*) FROM appointment WHERE start LIKE '" + date + "' and type = 'Demo';";
-
+            DataTable demo = new DataTable();
+            universals.TableReader(selectDemoAppoinmentMonth, demo);
+            if (demo.Rows.Count > 0)
+            {
+                demoCount.Text = demo.Rows[0][0].ToString();
+            }
+            else
+            {
+                MessageBox.Show("No demo appointments this month.");
+            }
             string selectContractReviewAppointmentMonth = "SELECT COUNT(*) FROM appointment WHERE start LIKE '" + date + "' and type = 'Contract Review';";
-
+            DataTable contract = new DataTable();
+            universals.TableReader(selectContractReviewAppointmentMonth, contract);
+            if (contract.Rows.Count > 0)
+            {
+                contractReviewCount.Text = contract.Rows[0][0].ToString();
+            }
+            else
+            {
+                MessageBox.Show("No contract review appointments this month");
+            }
             string selectPresentationAppointmentMonth = "SELECT COUNT(*) FROM appointment WHERE start LIKE '" + date + "' and type = 'Presentation';";
-
+            DataTable presentation = new DataTable();
+            universals.TableReader(selectPresentationAppointmentMonth, presentation);
+            if (presentation.Rows.Count > 0)
+            {
+                presentationCount.Text = presentation.Rows[0][0].ToString();
+            }
+            else
+            {
+                MessageBox.Show("No presentation appointments this month.");
+            }
             string selectScrumAppointmentMonth = "SELECT COUNT(*) FROM appointment WHERE start LIKE '" + date + "' and type = 'Scrum';";
+            DataTable scrum = new DataTable();
+            universals.TableReader(selectScrumAppointmentMonth, scrum);
+            if (scrum.Rows.Count > 0)
+            {
+                scrumCount.Text = scrum.Rows[0][0].ToString();
+            }
+            else
+            {
+                MessageBox.Show("No scrum appointments this month.");
+            }
 
             string selectAppointmentCountMonth = "SELECT COUNT(*) FROM appointment WHERE start LIKE '" + date + "';";
-                
-            using (MySqlConnection connect = new MySqlConnection(SqlDatabase.ConnectionString))
+            DataTable all = new DataTable();
+            universals.TableReader(selectAllAppointmentsMonth, all);
+            if (all.Rows.Count > 0)
             {
-                connect.Open();
-                MySqlCommand allAppointments = new MySqlCommand(selectAllAppointmentsMonth, connect);
-                MySqlCommand demoAppointments = new MySqlCommand(selectDemoAppoinmentMonth, connect);
-                MySqlCommand contractAppointments = new MySqlCommand(selectContractReviewAppointmentMonth, connect);
-                MySqlCommand scrumAppointments = new MySqlCommand(selectScrumAppointmentMonth, connect);
-                MySqlCommand presAppointments = new MySqlCommand(selectPresentationAppointmentMonth, connect);
-                MySqlCommand allCount = new MySqlCommand(selectAppointmentCountMonth, connect);
-
-                DataTable allAppointmentsDt = new DataTable();
-                MySqlDataReader reader = allAppointments.ExecuteReader();
-                allAppointmentsDt.Load(reader);
-                apptByMonDgv.DataSource = allAppointmentsDt;
-
-                DataTable contract = new DataTable();
-                MySqlDataReader contractReader = contractAppointments.ExecuteReader();
-                contract.Load(contractReader);
-                contractReviewCount.Text = contract.Rows[0][0].ToString();
-
-                DataTable demo = new DataTable();
-                MySqlDataReader demoReader = demoAppointments.ExecuteReader();
-                demo.Load(demoReader);
-                demoCount.Text = demo.Rows[0][0].ToString();
-
-                DataTable scrum = new DataTable();
-                MySqlDataReader scrumReader = scrumAppointments.ExecuteReader();
-                scrum.Load(scrumReader);
-                scrumCount.Text = scrum.Rows[0][0].ToString();
-
-                DataTable presentation = new DataTable();
-                MySqlDataReader presReader = presAppointments.ExecuteReader();
-                presentation.Load(presReader);
-                presentationCount.Text = presentation.Rows[0][0].ToString();
-
-                DataTable all = new DataTable();
-                MySqlDataReader allTypeCount = allCount.ExecuteReader();
-                all.Load(allTypeCount);
                 totalCount.Text = all.Rows[0][0].ToString();
-
-                connect.Close();
+            }
+            else
+            {
+                MessageBox.Show("No Appointments scheduled this Month.");
             }
         }
 
